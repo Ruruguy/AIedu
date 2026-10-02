@@ -1,0 +1,228 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Antigravity 先修操作指南｜EMSXAI</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="extension.css"><script defer src="extension.js"></script><style>.ag-guide{max-width:1120px;margin:auto;padding:60px 24px 60px;line-height:1.85}.ag-guide h2{margin-top:48px;scroll-margin-top:90px;border-top:1px solid #b8cdd3;padding-top:24px}.ag-guide table{border-collapse:collapse;width:100%;font-size:16px}.ag-guide th,.ag-guide td{border:1px solid #c4d6db;padding:12px;vertical-align:top}.ag-guide th{background:#e6f3f4}.ag-guide pre{white-space:pre-wrap;overflow-wrap:anywhere}.ag-guide a{overflow-wrap:anywhere}.ag-guide h1{font-size:clamp(28px,4vw,44px)}.ag-guide .copy-block{overflow:hidden}.ag-guide p,.ag-guide li{color:#23445c}</style></head><body><header class="site-header"><a class="brand" href="index.html#workspace">← 返回主課程</a><span>Antigravity 先修</span></header><main class="ag-guide"><aside class="learning-gate">本堂只學 Antigravity；Codex 後續銜接。<a href="downloads/Antigravity操作指南_20260924_1749.md" download>下載完整指南 .md</a></aside><h1>Google Antigravity：醫療救護工作坊操作指南</h1><details class="detail-box"><summary>章節目錄（依序學習或跳到實作）</summary><nav class="extension-toc" aria-label="Antigravity 教學目錄"><a href="#ag-1">1. 課前：先確認是哪個版本</a><a href="#ag-2">2. 必須先懂的六個觀念</a><a href="#ag-3">3. 一個 Project、一條核心流程</a><a href="#ag-4">4. 計畫審核與工具權限是兩道關卡</a><a href="#ag-6">5. 用證據除錯</a><a href="#ag-7">6. 八個省力習慣</a><a href="#ag-8">7. Rules、Skills 與 Workflows：課後再學</a><a href="#ag-9">8. 常見卡關與處理</a><a href="#ag-10">9. 後續才學 Codex：帶作品與方法過去</a><a href="#ag-12">官方參考資料</a></nav></details>
+<p>版本：2026-09-24 16:42（Asia/Taipei）。本堂先用 <strong>Antigravity</strong> 完成一個原型，<strong>Codex 留到下一階段</strong>。全程假資料，不連院內系統。</p>
+<aside class="learning-gate"><a href="tools-checklist.html">先看 Antigravity 與 Codex 工具清單</a>：依案例選配，不必全部安裝。</aside><h2 id="ag-1">1. 課前：先確認是哪個版本</h2>
+<p>Google 目前分別提供獨立 Antigravity App、Antigravity IDE，以及 CLI／SDK。本教材以獨立 App 為主，附 IDE 對照。請以課程指定的產品與版本操作。<a href="https://codelabs.developers.google.com/getting-started-google-antigravity">Google 入門課</a></p>
+<p>2026-09-22 的 2.17.0 更新把相關設定稱為 <strong>Plan Review Policy</strong>，並介紹 <code>/plan</code>。舊教材可能仍稱 Artifact Review Policy、Planning／Fast。版本分批推出，請以已安裝介面與對應文件為準，不能假設所有人的按鈕相同。<a href="https://antigravity.google/changelog">更新紀錄</a></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>課堂動作</th>
+<th>獨立 App 主路線</th>
+<th>IDE 對照</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>選工作範圍</td>
+<td>建立 Project，選練習資料夾</td>
+<td>開啟練習資料夾作為 Workspace</td>
+</tr>
+<tr>
+<td>提交任務</td>
+<td>在該 Project 建立對話</td>
+<td>在 Agent 面板提交任務</td>
+</tr>
+<tr>
+<td>先規劃</td>
+<td>使用 <code>/plan</code>；檢查計畫審核設定</td>
+<td>若有 Planning 選項則使用；名稱依版本</td>
+</tr>
+<tr>
+<td>找證據</td>
+<td>看計畫、變更與成果面板</td>
+<td>看 Artifacts 與程式變更</td>
+</tr>
+<tr>
+<td>基本方法</td>
+<td>需求、計畫、核准、小步測試</td>
+<td>相同，不必背相同按鈕位置</td>
+</tr>
+</tbody></table></div>
+<h3>安裝與成功條件</h3>
+<ol>
+<li>從 <a href="https://antigravity.google/download">Google Antigravity 官方下載頁</a> 選擇課程指定產品及作業系統。不要從第三方下載站取安裝檔。</li>
+<li>準備可使用的 Google 帳號，先完成登入。機構管理帳號的開放條件請先請管理者確認，課堂不臨時繞過限制。</li>
+<li>準備 Chrome 或課程指定瀏覽器。先不串私人雲端硬碟、信箱、院內系統或 MCP。</li>
+<li>建立 <code>emsxai-lab</code> 資料夾，只放假資料與教材。不要把整個桌面或下載資料夾交給 Agent。</li>
+<li>建立 Project 並選該資料夾；在新對話請它「只列出目前專案檔案與路徑，不修改、不執行、不連網」。人工核對範圍。</li>
+<li>完成條件是「能登入、選對專案、看見同一份測試文件」。Python、Node.js、Docker 均依任務需要才安裝。</li>
+</ol>
+<p>課前確認可用模型與用量，<strong>不保證免費、無限使用或固定額度</strong>。若登入或安裝卡住，先共用同組可用電腦，其他人負責規格與測試。</p>
+<aside class="learning-gate"><strong>操作速查：</strong><a href="antigravity-shortcuts.html">Antigravity 快捷鍵與指令</a>｜分清 App、IDE、CLI；含 Mac／Windows 對照與醫療救護練習。</aside><h2 id="ag-2">2. 必須先懂的六個觀念</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>白話說明</th>
+<th>課堂要檢查什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model</td>
+<td>提供理解與產生內容的能力</td>
+<td>換模型不會取消資安責任</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>依任務選擇下一步並使用工具</td>
+<td>它打算改什麼、執行什麼</td>
+</tr>
+<tr>
+<td>Harness</td>
+<td>支撐執行的工具、權限、紀錄與驗收環境</td>
+<td>是否可停、可查、可回復</td>
+</tr>
+<tr>
+<td>Project／Workspace</td>
+<td>本次工作的資料夾範圍</td>
+<td>是否誤選其他文件</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>本次提供的規格、檔案與對話資訊</td>
+<td>有沒有提供正確版本與必要條件</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>可查看與評論的工作成果</td>
+<td>計畫、程式差異、測試或操作紀錄</td>
+</tr>
+</tbody></table></div>
+<p>Antigravity 是操作 Agent 的開發工具環境，不等於某一個模型。Artifact 可協助檢視成果，但**「AI 說完成」不是實際驗收**。<a href="https://antigravity.google/docs/artifacts/">Artifacts 官方說明</a></p>
+<h2 id="ag-3">3. 一個 Project、一條核心流程</h2>
+
+<ol><li>選對 Project，指向 SPEC.md。</li><li>寫清核心流程和測試。</li><li>用 /plan 檢查計畫，核對權限。</li></ol>
+<p>建議專案結構（教學用命名，不是 Antigravity 強制格式）：</p>
+<div class="copy-block"><button class="copy-button" type="button">複製</button><pre><code class="language-text">emsxai-lab/
+  SPEC.md          本次要做什麼、不做什麼
+  CLASS_RULES.md   課堂限制，由提示詞明確要求閱讀
+  TESTS.md         重現步驟、預期與實際結果
+  README.md        如何開啟與重啟
+  HANDOFF.md       現況、已知問題、下一步
+  data/           虛構測試資料
+  output/         index.html、styles.css、app.js
+</code></pre></div>
+<p>用附件或 <code>@</code> 檔案選單指向 SPEC.md；介面不同時直接提供專案內相對路徑，並要求 Agent 回報讀到的檔案名稱。不要假設它記得上一段對話。<a href="https://codelabs.developers.google.com/getting-started-google-antigravity">Project 入門</a></p>
+<h2 id="ag-4">4. 計畫審核與工具權限是兩道關卡</h2>
+<p><code>/plan</code> 用來先整理需求與產生可審核計畫。檢查是否有檔案清單、依賴、限制及驗收步驟，再允許進入實作。<a href="https://antigravity.google/docs/plan/">Plan 官方說明</a></p>
+<p>**課堂教學建議：**計畫採每次審核，不使用自動略過計畫審查。需求模糊、跨檔修改或新增功能都先規劃。若 IDE 有 Fast，僅考慮已明確限定的低風險小修正，仍需測試；不拿「速度快」當作開放權限的理由。<a href="https://antigravity.google/docs/artifact-review">Artifact Review</a></p>
+<p>工具權限另行處理檔案、指令與對外操作。官方文件中 macOS／Linux 的 Default 搭配 sandbox，而 <strong>Request Review 權限預設並不等於開啟 sandbox</strong>。它也與同名的計畫審核選項不同。Windows 與分批更新版本可能有不同邊界。不能只看設定名稱就保證安全。<a href="https://antigravity.google/docs/permissions">Permissions</a></p>
+<p>本課程先保留隔離與最小範圍，再針對需要的操作確認；不啟用 Turbo 或全域無限制執行。看不懂權限時先停止，請它說明影響，而非一律按允許。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>操作情境</th>
+<th>學員決定前要問</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>寫入 output/index.html</td>
+<td>是否在本組資料夾？有沒有覆蓋原檔？</td>
+</tr>
+<tr>
+<td>下載套件或網站內容</td>
+<td>來源何在？是否真的需要？會連到哪裡？</td>
+</tr>
+<tr>
+<td>執行終端機指令</td>
+<td>目的、工作目錄、讀寫對象及副作用是什麼？</td>
+</tr>
+<tr>
+<td>開啟瀏覽器測試</td>
+<td>是否只操作本機教學頁？是否涉及真實帳號？</td>
+</tr>
+<tr>
+<td>刪除、登入、對外發布</td>
+<td>暫停，先核對範圍並取得核准</td>
+</tr>
+</tbody></table></div>
+<p>提示詞、Rules、使用者同意與 sandbox 各有作用，任何一項都不是資料外洩的絕對保證。</p>
+<h2 id="ag-6">5. 用證據除錯</h2>
+<p>請另一組操作，找出一個問題，修正後重跑舊案例。耗材組不直接說「壞了」，改說「輸入 -2 後，庫存由 10 變 12，但預期應拒絕並維持 10」。</p>
+<div class="copy-block"><button class="copy-button" type="button">複製</button><pre><code class="language-text">先停止新增功能，只診斷這個問題：
+位置：output/index.html 的領用按鈕。
+重現：選紗布，輸入 -2，按領用。
+預期：顯示錯誤，庫存仍是 10。
+實際：庫存變成 12。
+請提出最小修正，說明會改哪些檔案，等我確認。
+修正後重跑正常領用、負數、空白和超量四個案例。
+</code></pre></div>
+<p>瀏覽器自動測試或錄影能提供操作證據，但仍要人工用另一支手機和不同輸入試一次。若瀏覽器工具不可用，改人工測試並如實記錄，不因此開放私人帳號或取消全部限制。<a href="https://antigravity.google/docs/artifacts/">Artifacts</a></p>
+<h2 id="ag-7">6. 八個省力習慣</h2>
+<ol>
+<li>**一次一個任務。**先讓題庫能作答，再選錯題紀錄或搜尋其一。</li>
+<li>**指定檔案。**把「改那個」換成檔名、按鈕位置與預期行為。</li>
+<li>**先要小計畫。**每階段寫明停下來的條件。</li>
+<li>**保留穩定版。**用 Git commit 或另存資料夾；不要假設聊天復原能撤回已發布資料。</li>
+<li>**成果要可重現。**除了截圖，也記錄輸入、版本與操作步驟。</li>
+<li>**對話過長就交接。**請 AI 更新 HANDOFF.md；新對話明確要求先讀，並核對是否讀到最新版本。</li>
+<li>**重複規則寫入文件。**課堂先用 CLASS_RULES.md 明確引用，熟悉後才設定 Rules／Skills。</li>
+<li>**限制迭代成本。**不自動升級模型、不重做整頁、不開多代理競賽；遇額度限制就保留檔案轉人工驗收。</li>
+</ol>
+<h2 id="ag-8">7. Rules、Skills 與 Workflows：課後再學</h2>
+<p>Rules 用來描述持續適用的限制；Skills 用來封裝可重用的工作方法。官方 Rules 支援專案／目錄範圍，設定方式依產品而異。<strong>普通 SPEC.md 不會僅因為存在就保證每次自動載入</strong>，主課程仍要明確引用。<a href="https://antigravity.google/docs/rules">Rules</a>／<a href="https://antigravity.google/docs/skills">Skills</a></p>
+<p>IDE 文件另有用斜線名稱呼叫的 Workflows。別把舊 IDE 的檔案路徑、觸發方式或設定直接當成所有版本通用規則。課後要做「發布前檢查」重用流程時，再按實際產品的官方文件建立與驗證。<a href="https://antigravity.google/docs/ide/workflows/">IDE Workflows</a></p>
+<p>CLASS_RULES.md 可寫以下內容（本課程範例，不是程式權限設定）：</p>
+<div class="copy-block"><button class="copy-button" type="button">複製</button><pre><code class="language-text">所有資料皆為虛構，介面使用繁體中文。
+只改 output；不改 data 原始資料。
+先說明計畫與驗收方式，確認後才執行。
+禁止讀取真實病歷、勤務資料、帳密或院內文件。
+下載、登入、外傳、刪除、覆寫與發布前先請求確認。
+完成時列出修改檔案、測試證據、限制與未完成事項。
+</code></pre></div>
+<h2 id="ag-9">8. 常見卡關與處理</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>現象</th>
+<th>先檢查</th>
+<th>本堂處理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>找不到教學畫面的按鈕</td>
+<td>App 或 IDE？版本是否相同？</td>
+<td>用產品對照表找功能，不硬套舊截圖</td>
+</tr>
+<tr>
+<td>找不到 SPEC.md</td>
+<td>Project 是否指到另一個資料夾？</td>
+<td>先列檔案與路徑，再繼續</td>
+</tr>
+<tr>
+<td>已核准計畫，卻還要求權限</td>
+<td>計畫與執行是不同關卡</td>
+<td>看具體動作、路徑與影響，逐次核對</td>
+</tr>
+<tr>
+<td>任務越做越大</td>
+<td>提示詞是否含「完整平台」等模糊範圍？</td>
+<td>停止，只保留一條流程</td>
+</tr>
+<tr>
+<td>一直顯示成功，實際不能用</td>
+<td>是否有真正執行測試？</td>
+<td>要重現步驟，人工重測</td>
+</tr>
+<tr>
+<td>權限一直被拒絕</td>
+<td>是否越界、連網或安裝新套件？</td>
+<td>不一律允許，請縮小任務</td>
+</tr>
+<tr>
+<td>登入／模型／用量不可用</td>
+<td>帳號、方案、網路及機構政策</td>
+<td>同組共用或人工驗收，不臨時購買</td>
+</tr>
+<tr>
+<td>換對話後忘記先前進度</td>
+<td>是否有明確交接文件？</td>
+<td>更新 HANDOFF.md 並要求先讀</td>
+</tr>
+</tbody></table></div>
+<h2 id="ag-10">9. 後續才學 Codex：帶作品與方法過去</h2>
+<p>下一階段先沿用同一個小作品，不重新做另一套大系統。整理 SPEC.md、README.md、TESTS.md、HANDOFF.md 與可回復版本，讓另一套工具先讀檔、解釋現況，再修一個已知錯誤。</p>
+<p>可移轉的是「寫規格、給脈絡、控制權限、看修改差異、測試與回復」；按鈕、設定、帳號與規則自動載入方式需另行學習。此處只定義課程銜接，不提供尚未查核的 Codex 操作步驟。</p>
+
+<h2 id="ag-12">官方參考資料</h2>
+<p>操作或選項如有變動，請以 <a href="https://antigravity.google/docs/">Google 官方文件</a>及目前安裝的版本為準。</p>
+</main></body></html>

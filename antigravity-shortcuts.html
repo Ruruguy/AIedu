@@ -1,0 +1,238 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Antigravity 快捷鍵與指令｜EMSXAI</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="extension.css"><style>main.tools{max-width:1120px;margin:auto;padding:40px 24px 80px;line-height:1.85;color:#23445c}h1{font-size:clamp(28px,4vw,42px)}h2{margin-top:40px;border-top:1px solid #b8cdd3;padding-top:22px}table{border-collapse:collapse;width:100%;font-size:16px}td,th{border:1px solid #c4d6db;padding:12px;vertical-align:top}th{background:#e6f3f4}a,code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:20px;background:#eef5f7}.tools input{accent-color:#087f8c}.tools p,.tools li{color:#23445c}</style></head><body><header class="site-header"><a class="brand" href="index.html#install">← 返回課前準備</a><span>快捷鍵與指令</span></header><main class="tools"><p><a class="primary-button" href="downloads/Antigravity快捷鍵與指令_20260924_1749.md" download>下載快捷鍵與指令 .md</a>　<a href="antigravity.html">操作指南</a>　<a href="tools-checklist.html">工具安裝清單</a></p><h1>Antigravity 快捷鍵與指令速查</h1>
+<p>版本：2026-09-24 17:49（Asia/Taipei）。給醫師、醫護人員、EMT、教官及教學者使用。</p>
+<h2>先分清楚：按鍵、聊天指令、終端機指令</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>在哪裡操作</th>
+<th>例子</th>
+<th>要記住的事</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快捷鍵</td>
+<td>Antigravity 視窗內按組合鍵</td>
+<td>Cmd＋P</td>
+<td>必須先確認目前視窗與游標位置</td>
+</tr>
+<tr>
+<td>Slash 指令</td>
+<td>Agent 聊天輸入框</td>
+<td>/plan</td>
+<td>先輸入半形 <code>/</code>，查看當前可用選單</td>
+</tr>
+<tr>
+<td>CLI 啟動指令</td>
+<td>系統終端機</td>
+<td>agy</td>
+<td>需另裝 CLI；不是把文字貼進 App 聊天框</td>
+</tr>
+<tr>
+<td>自訂工作流程</td>
+<td>支援的 IDE Agent 輸入框</td>
+<td>/workflow-name</td>
+<td>需先建立，不是每台電腦都有的內建指令</td>
+</tr>
+</tbody></table></div>
+<p>本課主線是 <strong>Antigravity 獨立 App</strong>。IDE、CLI 表格是延伸，不要求全部練習。快捷鍵可能受版本、自訂鍵位、輸入法及焦點影響；以下依官方文件整理，並非已在每位學員電腦實測。不要把所有 Mac 的 Cmd 都機械地換成 Ctrl。</p>
+<h2>一、獨立 App：先學五組導航鍵</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>macOS</th>
+<th>Windows／Linux</th>
+<th>課程操作例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>選擇對話</td>
+<td>Cmd＋K</td>
+<td>Ctrl＋K</td>
+<td>找回耗材管理的除錯討論</td>
+</tr>
+<tr>
+<td>搜尋檔案</td>
+<td>Cmd＋P</td>
+<td>Ctrl＋P</td>
+<td>找 SPEC.md 或題庫資料檔</td>
+</tr>
+<tr>
+<td>焦點移到輸入框</td>
+<td>Cmd＋L</td>
+<td>Ctrl＋L</td>
+<td>回到 Agent 提交下一個問題</td>
+</tr>
+<tr>
+<td>新對話</td>
+<td>Cmd＋N</td>
+<td>Ctrl＋N</td>
+<td>為新的案例另開討論，並確認專案</td>
+</tr>
+<tr>
+<td>切換相鄰對話</td>
+<td>Option＋↑／↓</td>
+<td>Alt＋↑／↓</td>
+<td>比較需求討論與測試討論</td>
+</tr>
+</tbody></table></div>
+<p>來源：<a href="https://antigravity.google/docs/getting-started">Google 官方 Getting Started：Basic Navigation</a>。表格適用於 App 導航，不是 Chrome 瀏覽器的快捷鍵；例如在瀏覽器按 Ctrl＋L，可能會選取網址列。</p>
+<p>macOS 可用 <strong>Cmd＋逗號</strong> 開啟設定；也可以點側欄 Settings，再找 Shortcuts 查看／調整目前設定。本教材未由此推定 Windows 有相同的 Ctrl＋逗號對應，其他平台請由設定選單進入。<a href="https://antigravity.google/docs/settings">官方 Settings</a></p>
+<p>官方更新紀錄也記載選取文字時 Cmd／Ctrl＋L 或 I 的引用操作；這與沒有選取文字時的導航可能不同。因此教學時先取消選取，再示範「回到輸入框」，不要只背按鍵。<a href="https://antigravity.google/changelog">官方更新紀錄</a></p>
+<h2>二、App 聊天框：先教三個指令</h2>
+<p>在支援版本的 App 聊天框先輸入半形 <code>/</code> 並選取指令，再加任務。若沒有出現在選單，不代表學員打錯；先確認產品、版本與帳號。不要把 CLI 的 <code>/help</code> 直接當作 App 必有的功能。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>用途</th>
+<th>醫療救護教材示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/plan</td>
+<td>先產出可檢閱的實作計畫</td>
+<td>題庫先列資料格式、答案核對與測試，不直接開工</td>
+</tr>
+<tr>
+<td>/grill-me</td>
+<td>先提問，把需求問清楚</td>
+<td>耗材是單人練習還是多人共用？要記錄哪些異動？</td>
+</tr>
+<tr>
+<td>/btw</td>
+<td>工作進行中提出旁支問題</td>
+<td>問「目前哪個檔案控制按鈕文字？」</td>
+</tr>
+</tbody></table></div>
+<p>上述功能見 <a href="https://antigravity.google/docs/slash-commands">官方 Slash 指令總覽</a>。計畫應先閱讀、修正與確認，再進入執行；提出計畫不等於已通過測試。<a href="https://antigravity.google/docs/plan/">官方 /plan 說明</a></p>
+<h3>可直接使用：考古題練習</h3>
+<pre><code class="language-text">/plan 請先讀 SPEC.md，規劃一個三題的救護知識練習頁。
+只用講師提供的虛構題目，純 HTML/CSS/JavaScript。
+列出檔案、作答流程、正常與錯誤輸入測試，先不要修改。
+不得搜尋下載真實題庫、上傳資料或公開發布；等我確認計畫。
+</code></pre>
+<h3>可直接使用：耗材需求訪談</h3>
+<pre><code class="language-text">/grill-me 我想做教學用耗材領用頁，只有虛構資料。
+請一次問一個問題，先確認角色、品項、數量、負數與超量處理。
+先不要寫程式，也不要預設需要登入、資料庫或 Docker。
+</code></pre>
+<p>AED 訓練可沿用相同方法，把規格改成「教官核可的固定模擬腳本」。本教材的提示詞是教學設計範例，不是臨床操作指引。</p>
+<h2>三、其他 App／CLI 公開指令：了解後再用</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能摘要</th>
+<th>本課提醒</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/browser</td>
+<td>交由瀏覽器代理研究或檢查畫面</td>
+<td>僅核准的來源／練習頁，不自動登入院內網站</td>
+</tr>
+<tr>
+<td>/learn</td>
+<td>將對話中的修正整理成持續使用的 Rules／Skills</td>
+<td>可能寫入持久設定，先審查內容</td>
+</tr>
+<tr>
+<td>/schedule</td>
+<td>建立一次性或重複執行的工作</td>
+<td>確認時區、執行內容、停止方式與資料範圍</td>
+</tr>
+<tr>
+<td>/goal</td>
+<td>針對目標持續執行</td>
+<td>初學者不以無限開放任務練習，先限定範圍與停止條件</td>
+</tr>
+<tr>
+<td>/boost</td>
+<td>較深入的多代理推理</td>
+<td>評估方案、用量與是否真的需要</td>
+</tr>
+<tr>
+<td>/teamwork-preview</td>
+<td>較長期的代理協作任務</td>
+<td>不列入基本必學項目</td>
+</tr>
+</tbody></table></div>
+<p>適用介面與功能以 <a href="https://antigravity.google/docs/slash-commands">官方 Slash 指令總覽</a>及實際選單為準。這些指令不是取消安全界線的許可；不要用「一直做完」代替必要的人工確認。</p>
+<h2>四、Antigravity IDE：另外看這一組</h2>
+<p>Google 的 IDE 教學列出 <strong>Cmd＋E（Mac）／Ctrl＋E（Windows）</strong>，用於 Agent Manager 與編輯器之間切換；也可使用 Open Editor／Open Agent Manager 按鈕。此處不推定獨立 App 或 Linux 一定相同。<a href="https://codelabs.developers.google.com/autonomous-ai-developer-pipelines-antigravity">Google IDE 教學</a></p>
+<p>IDE 自訂 Workflow 可透過 <code>/workflow-name</code> 呼叫，但要先有該流程。譬如「/check-aed-script」若只是老師命名的範例，學員沒有建立就不能使用，不可宣稱是內建命令。</p>
+<p>版本提醒：官方目前公告 Workflows 將轉向 Skills，並列出 2026-11-01 遷移時程；新課程不要求學員投入舊流程建置。<code>/migrate-workflows</code> 是遷移既有設定的操作，先備份並審查，不當作入門練習。<a href="https://antigravity.google/docs/ide/workflows/">官方 Workflows 說明</a></p>
+<h2>五、CLI 延伸：只給已安裝終端機版本者</h2>
+<h3>啟動與接續</h3>
+<p>先在終端機切到正確練習專案，再執行 <code>agy</code> 啟動 CLI。獨立 App 能使用不代表終端機已安裝 CLI。<a href="https://antigravity.google/docs/getting-started?tab=cli">官方入門</a></p>
+<p>若要接續目前工作區最近一段對話，可用 <code>agy -c</code>；在 CLI 內可用 <code>/resume</code> 選先前對話。接續對話仍須核對專案與檔案現況，不能假設內容沒有改變。<a href="https://antigravity.google/docs/cli/commands/resume">官方 Resume 說明</a></p>
+<h3>CLI 內常用命令</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/help</td>
+<td>查看說明</td>
+</tr>
+<tr>
+<td>/keybindings</td>
+<td>查看／編輯快捷鍵</td>
+</tr>
+<tr>
+<td>/diff</td>
+<td>檢查修改差異</td>
+</tr>
+<tr>
+<td>/permissions</td>
+<td>檢查工具權限</td>
+</tr>
+<tr>
+<td>/usage</td>
+<td>查看模型用量</td>
+</tr>
+<tr>
+<td>/tasks</td>
+<td>查看背景工作</td>
+</tr>
+<tr>
+<td>/clear</td>
+<td>重設目前對話脈絡；不是復原檔案</td>
+</tr>
+<tr>
+<td>/exit</td>
+<td>離開 CLI</td>
+</tr>
+</tbody></table></div>
+<h3>CLI 內按鍵</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>按鍵</th>
+<th>用途／注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Enter</td>
+<td>送出輸入或確認選項</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>關閉面板或中止目前串流，視焦點而定</td>
+</tr>
+<tr>
+<td>Ctrl＋C</td>
+<td>結束 CLI；Agent 工作中可能要求確認</td>
+</tr>
+<tr>
+<td>Ctrl＋L</td>
+<td>清理顯示畫面，不是 App 的「移到輸入框」</td>
+</tr>
+</tbody></table></div>
+<p>來源：<a href="https://antigravity.google/docs/cli/reference/">官方 CLI Reference</a>。CLI 的 Ctrl 就是 Control，Mac 不要直接換成 Cmd。停止或退出不保證撤回已寫入檔案或外部操作，仍需檢查結果。</p>
+</main></body></html>

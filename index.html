@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="給醫師、醫護人員與 EMT 的 AI Agent 程式實作循序教材。">
+  <title>EMS × AI｜AI Agent 程式實作學習站</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b2a5b'/%3E%3Cpath d='M28 12h8v16h16v8H36v16h-8V36H12v-8h16z' fill='%2325a6a6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/learning-diagrams.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="回到首頁">
+      <span class="brand-mark">AI × EMS</span>
+      <span>醫療救護 AI Agent 實作</span>
+    </a>
+    <div class="header-actions">
+      <span class="progress-label" id="progressLabel">進度 0%</span>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="courseNav">章節</button>
+    </div>
+    <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+  </header>
+
+  <div class="page-shell" id="top">
+    <aside class="course-nav" id="courseNav" aria-label="課程章節">
+      <p class="nav-title"><a href="antigravity.html">Antigravity 操作指南</a></p>
+      <p class="nav-title"><a href="knowledge-map.html">知識地圖｜名詞相互關係</a></p>
+      <nav>
+        <a href="#start"><span>00</span>開始學習</a>
+        <a href="#prepare"><span>01</span>課前準備</a>
+        <a href="#install"><span>02</span>課前安裝驗證</a>
+        <a href="#projects"><span>03</span>選擇實作路線</a>
+        <a href="#mental-model"><span>04</span>名詞與圖解</a>
+        <a href="#workspace"><span>05</span>規格與測試計畫</a>
+        <a href="#first-run"><span>06</span>實作一：最小版本</a>
+        <a href="#test"><span>07</span>實作二：測試改良</a>
+        <a href="#security"><span>08</span>資料與公開前檢查</a>
+        <a href="#publish"><span>09</span>發布與手機驗收</a>
+        <a href="#feedback"><span>10</span>回饋與成果展示</a>
+        <a href="#tool-extension"><span>11</span>課後：Docker／擷取</a>
+        <a href="#extensions"><span>12</span>課後：臨床教育</a>
+        <a href="#faq"><span>13</span>FAQ 與資源</a>
+      </nav>
+      <div class="nav-note">
+        <strong>課堂安全線</strong>
+        <span>只用虛構資料；下載、登入、外傳、刪除與發布前先確認。</span>
+      </div>
+    </aside>
+
+    <main id="main">
+      <section class="hero section" id="start">
+        <div class="hero-copy">
+          <p class="eyebrow">FIELD LAB 01｜3 小時醫療救護實作</p>
+          <h1>把一個現場痛點<br>推進成可驗證工具</h1>
+          <p class="lead">課前準備環境；課中依序選題、理解 Agent、用 Antigravity 寫規格與測試計畫、實作、驗證、安全檢查與發布。Codex 留到後續課程。今天做的是低風險教學原型，不是正式醫療系統。</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#prepare">開始學習</a>
+            <a class="secondary-button" href="#glossary">查專有名詞</a>
+          </div>
+          <ul class="hero-meta" aria-label="課程資訊">
+            <li>醫護人員、EMT、醫師、教官與教學者</li>
+            <li>15 人｜5 組 × 3 人</li>
+            <li>假資料｜Human in the Loop</li>
+          </ul>
+          <div class="role-picker" aria-label="選擇課程帶入角色">
+            <p>選擇你的工作視角</p>
+            <div class="role-buttons" role="group">
+              <button class="role-button active" type="button" data-role="care">醫護人員</button>
+              <button class="role-button" type="button" data-role="emt">救護技術員</button>
+              <button class="role-button" type="button" data-role="doctor">醫師</button>
+              <button class="role-button" type="button" data-role="instructor">教官</button>
+              <button class="role-button" type="button" data-role="educator">教學者</button>
+            </div>
+          </div>
+          <aside class="role-brief" aria-live="polite">
+            <span data-role-slot="label">醫護人員視角</span>
+            <strong data-role-slot="headline">先從交班、衛教或耗材紀錄的重複工作開始</strong>
+            <p data-role-slot="summary">你要練的不是把臨床判斷交給 AI，而是把流程寫清楚、減少重複輸入，並保留人工覆核。</p>
+          </aside>
+        </div>
+        <div class="hero-visual mission-board" aria-label="課程任務看板">
+          <div class="board-head"><span>今日任務卡</span><strong>EMS–AI / 001</strong></div>
+          <div class="board-row"><b>01</b><span><strong>問題</strong><small>找出重複痛點</small></span><i>DISCOVER</i></div>
+          <div class="board-row"><b>02</b><span><strong>規格</strong><small>寫成 SPEC.md</small></span><i>DEFINE</i></div>
+          <div class="board-row"><b>03</b><span><strong>建立</strong><small>Agent 做最小版</small></span><i>BUILD</i></div>
+          <div class="board-row"><b>04</b><span><strong>驗證</strong><small>失敗案例與人工核准</small></span><i>VERIFY</i></div>
+          <div class="board-foot"><span>完成條件</span><strong>能示範一次失敗與回復</strong></div>
+        </div>
+      </section>
+
+<section class="section" id="prepare">
+<aside class="learning-gate"><strong>課前完成，不占課中安裝時間。</strong>每組至少一台可運作的電腦；課堂不輸入病歷、勤務紀錄或真實人員資料。</aside>
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <div><p class="eyebrow">開始前先把風險降到最低</p><h2>課前準備與安全承諾</h2></div>
+        </div>
+        <div class="two-column">
+          <div>
+            <h3>你需要準備</h3>
+            <div class="checklist" data-checklist="prepare">
+              <label><input type="checkbox" data-progress> 可正常上網的 Windows 或 macOS 電腦</label>
+              <label><input type="checkbox" data-progress> 自己可登入的電子郵件與 GitHub 帳號</label>
+              <label><input type="checkbox" data-progress> 至少 5 GB 可用空間與充電器</label>
+              <label><input type="checkbox" data-progress> 建立一個全新的「EMS_AI_Lab」練習資料夾</label>
+              <label><input type="checkbox" data-progress> 只放虛構資料，不放病歷、姓名、影像或院內檔案</label>
+            </div>
+          </div>
+          <aside class="warning-card">
+            <span class="warning-icon">!</span>
+            <div>
+              <h3>課堂禁止輸入</h3>
+              <p>真實病人資料、病歷號、可辨識影像、帳密、API Key、Token、院內網址、未公開勤務資料與授權不明題庫。</p>
+              <p class="mini">若誤貼敏感內容：立即停止、不要繼續對話，依機構規範確認是否已外傳並通報。</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section alt" id="install"><aside class="learning-gate"><strong>操作速查：</strong><a href="antigravity-shortcuts.html">Antigravity 快捷鍵與指令</a>｜分清 App、IDE、CLI；含 Mac／Windows 對照與醫療救護練習。</aside><aside class="learning-gate"><strong>工具準備總表：</strong><a href="tools-checklist.html">Antigravity 與 Codex 必備／選配工具清單</a>，包含官方連結、案例配置與驗證方式。<a href="downloads/Antigravity與Codex_工具安裝清單_20260924_1749.md" download>下載 .md</a>。</aside><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-1">課前完成 Antigravity 安裝與版本確認</a>。完成後回到本節。</aside>
+<aside class="learning-gate"><strong>主路線：</strong>Antigravity、瀏覽器、練習資料夾；發布由每組一位使用 GitHub 帳號。先確認能產出與開啟靜態 HTML。Python、Node.js、Docker 不是全部必裝。</aside>
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <div><p class="eyebrow">依任務安裝，不是越多越好</p><h2>軟體安裝與成功驗證</h2></div>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card required">
+            <span class="status-chip">必要</span><div class="tool-icon">AI</div>
+            <h3>Google Antigravity（本堂主工具）</h3>
+            <p>本堂統一使用 Google Antigravity，依課程指定版本安裝獨立 App 或 IDE。Codex 是後續課程，本堂不要求安裝。第一次只開放練習資料夾。</p>
+            <div class="link-row"><a href="antigravity.html#ag-1">Antigravity 安裝與版本對照</a><a href="https://antigravity.google/download" target="_blank" rel="noopener">Antigravity ↗</a></div>
+          </article>
+          <article class="install-card required">
+            <span class="status-chip">依任務選配</span><div class="tool-icon">Py</div>
+            <h3>Python</h3>
+            <p>讓 Agent 能執行資料整理、CSV、簡易網頁伺服器與自動化腳本。</p>
+            <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 官方下載 ↗</a>
+            <code>python --version</code><code>py --version</code><code>python3 --version</code>
+          </article>
+          <article class="install-card required">
+            <span class="status-chip">版本管理建議</span><div class="tool-icon">Git</div>
+            <h3>Git 與 GitHub Desktop</h3>
+            <p>Git 用於保存版本與推送；GitHub Desktop 是圖形介面選配。Agent 要用終端機 Git 時，仍須驗證 git 命令。</p>
+            <div class="link-row"><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git ↗</a><a href="https://desktop.github.com/download/" target="_blank" rel="noopener">GitHub Desktop ↗</a></div>
+            <code>git --version</code>
+          </article>
+          <article class="install-card recommended">
+            <span class="status-chip">建議</span><div class="tool-icon">VS</div>
+            <h3>Visual Studio Code</h3>
+            <p>閱讀 Agent 建立的 HTML、CSS、JavaScript、Markdown 與錯誤訊息。</p>
+            <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">VS Code 官方下載 ↗</a>
+          </article>
+          <article class="install-card optional">
+            <span class="status-chip">選配</span><div class="tool-icon">JS</div>
+            <h3>Node.js</h3>
+            <p>只有使用 npm、React、JavaScript 建置工具或特定 MCP 時才需要。</p>
+            <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 官方下載 ↗</a><code>node --version</code>
+          </article>
+          <article class="install-card required">
+            <span class="status-chip">必要</span><div class="tool-icon">GH</div>
+            <h3>GitHub 帳號</h3>
+            <p>建立版本庫與免費 <code>github.io</code> 網站。請開啟兩步驟驗證。</p>
+            <a href="https://github.com/signup" target="_blank" rel="noopener">建立 GitHub 帳號 ↗</a>
+          </article>
+        </div>
+
+        <p>延伸工具為選配：<a href="docker-compose-firecrawl.html#unit-3">Docker Desktop／Compose 安裝與驗證</a>；<a href="docker-compose-firecrawl.html#unit-4">Firecrawl 可先用瀏覽器 Playground 練習</a>。請先完成本課程的核心環境。</p>
+        <details class="detail-box">
+          <summary>Windows 安裝 Python 時要注意什麼？</summary>
+          <p>依官方安裝程式指示安裝；若畫面提供「Add python.exe to PATH」，請勾選。完成後關閉並重新開啟命令提示字元，再輸入 <code>python --version</code> 或 <code>py --version</code>。macOS 常使用 <code>python3 --version</code>。</p>
+        </details>
+      </section>
+
+      <section class="section alt" id="projects">
+<aside class="learning-gate"><strong>先選題再寫規格。</strong>5 組 × 3 人：操作者、需求確認者、測試紀錄者；第二次實作交換角色。每組只選 A／B／C 一條路線。</aside>
+        <div class="section-heading"><span class="section-number">03</span><div><p class="eyebrow">每組只選一條核心流程</p><h2>三條醫療救護實作路線</h2></div></div>
+        <div class="role-map" aria-label="五種角色的課程帶入案例">
+          <article><span>醫護人員</span><strong>交班／衛教／耗材</strong><p>把重複紀錄做成可驗證流程，但不讓 AI 自動下臨床決定。</p></article>
+          <article><span>救護技術員</span><strong>裝備／AED／勤務</strong><p>重視手機操作、離線備援、時間壓力與現場錯誤容忍。</p></article>
+          <article><span>醫師</span><strong>推理／證據／決策</strong><p>先自行形成判斷，再用 AI 比較、查證與校準信任。</p></article>
+          <article><span>教官</span><strong>情境／流程／評核</strong><p>控制訓練節奏、標準動作、故障注入與教官覆寫。</p></article>
+          <article><span>教學者</span><strong>題庫／回饋／課程</strong><p>把學習目標、形成性評量與改善資料一起設計。</p></article>
+        </div>
+        <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="project">優先選「耗材管理」：以班別、領用、效期與交班查核為核心；先用虛構試算表，不連院內系統。</p></aside>
+        <figure class="lesson-image"><img src="assets/ppt-ems-roadmap.png" alt="EMS 從通報、派遣、現場、後送到教育與整備的 AI 應用概念地圖" loading="lazy"><figcaption>簡報的 EMS 應用地圖供選題參考。這堂課仍只選題庫、AED 訓練或耗材管理其中一條；圖中其他項目不是已上線系統或即時醫療建議。</figcaption></figure>
+        <p>題庫來源整理可接續 <a href="docker-compose-firecrawl.html#unit-4">Firecrawl 單頁擷取與人工覆核練習</a>；需要讓各組使用一致的網站環境，可接續 <a href="docker-compose-firecrawl.html#unit-3">Docker Compose 本機操作</a>。</p>
+        <div class="project-grid">
+          <article class="project-card green">
+            <span class="project-tag">A｜低風險</span><h3>考古題整理與練習</h3>
+            <ul><li>匯入講師核准的題目 CSV／JSON</li><li>依主題、年份與答題狀況篩選</li><li>先完成作答與分數；錯題 Log、重複題及雷達圖留待改良</li></ul>
+            <details><summary>可以請 AI 自動搜尋下載嗎？</summary><p>可以協助找候選來源，但採「官方網域白名單 → 先列清單 → 人工確認 → 才下載 → 保留來源與雜湊」流程。不得繞過登入、驗證或下載商業題庫；授權未確認前不公開。</p></details>
+          </article>
+          <article class="project-card orange">
+            <span class="project-tag">B｜需醫療覆核</span><h3>AED 訓練機</h3>
+            <ul><li>用虛構情境練習辨識與步驟</li><li>先做按鈕與重新開始；計時、語音、Log 是後續選項</li><li>固定流程由一般程式控制，AI 負責語言互動</li></ul>
+            <p class="mini">必須標示「教學模擬，非真實裝置或即時醫療指示」，流程由合格講師依現行指引核准。</p>
+          </article>
+          <article class="project-card teal">
+            <span class="project-tag">C｜資料流程</span><h3>耗材管理系統</h3>
+            <ul><li>入庫、領用、效期與低庫存提醒</li><li>主課程只用本機 CSV 與虛構資料；試算表串接留待課後</li><li>驗證零、負數、空白與錯誤格式</li></ul>
+            <p class="mini">接 LINE、帳號或正式資料庫前，先畫資料流與人工停止點。</p>
+          </article>
+        </div>
+        <figure class="lesson-image compact ppt-aed-visual"><img src="assets/ppt-aed-simulator.png" alt="AED 教學模擬器與生理監測介面的概念圖" loading="lazy"><figcaption>簡報中的裝置概念圖，僅用於討論訓練介面；實作流程須由合格講師覆核，不代表真實 AED 操作指引。</figcaption></figure>
+      </section>
+
+      <section class="section" id="mental-model">
+        <div class="section-heading">
+          <span class="section-number">04</span>
+          <div><p class="eyebrow">先分清誰提供能力、誰執行、誰管理</p><h2>Model、Agent、Harness 與 App</h2></div>
+        </div>
+        <figure class="lesson-image"><img src="assets/01-model-agent-harness.png" alt="Model、Agent、Harness 與 App 的差異圖"><figcaption>Harness 不一定出現在畫面上，卻決定 Agent 能看什麼、做什麼，以及如何驗證。</figcaption></figure>
+        <div class="concept-grid">
+          <article><span class="concept-no coral-bg">1</span><h3>Model／LLM</h3><p>提供語言、推理與產生內容的能力，像大腦；可能答錯，本身不等於會操作檔案。</p></article>
+          <article><span class="concept-no orange-bg">2</span><h3>Agent</h3><p>根據目標選下一步並呼叫工具，像執行勤務的人。</p></article>
+          <article><span class="concept-no teal-bg">3</span><h3>Harness</h3><p>管理 Context、工具、權限、測試、Log、停止與回復，像勤務規範與督導系統。</p></article>
+          <article><span class="concept-no navy-bg">4</span><h3>App</h3><p>最後給使用者操作的介面，還包含資料流、帳號、紀錄與維護。</p></article>
+        </div>
+        <div class="callout"><strong>一句記法：</strong>Agent 做事；Harness 讓它可控、可查、可停。</div>
+        <figure class="lesson-image compact"><img src="assets/02-agent-loop.png" alt="Agent 在 Harness 內進行 Plan、Act、Observe、Adjust 循環"></figure>
+
+        <div id="glossary" class="glossary-block">
+          <div class="callout"><strong>想把名詞串起來？</strong>到 <a href="knowledge-map.html">知識地圖</a>，看 AI／Agent／Skills／MCP、API／資料庫、版本／部署與 App 之間的關係；每一區都可展開閱讀醫療救護例子。</div>
+          <div class="glossary-head"><div><p class="eyebrow">遇到陌生詞先查這裡</p><h3>AI Agent 專有名詞</h3></div><input id="glossarySearch" type="search" placeholder="搜尋：Harness、Git、RAG…" aria-label="搜尋專有名詞"></div>
+          <div class="filter-row" role="group" aria-label="詞彙分類">
+            <button class="filter-button active" data-filter="all" type="button">全部</button>
+            <button class="filter-button" data-filter="core" type="button">核心</button>
+            <button class="filter-button" data-filter="code" type="button">程式</button>
+            <button class="filter-button" data-filter="data" type="button">資料</button>
+            <button class="filter-button" data-filter="safety" type="button">安全</button>
+          </div>
+          <div class="glossary-grid">
+            <details data-term="Docker 容器 Container Image 映像檔 Dockerfile" data-category="code"><summary>Docker／Container／Image</summary><p>Docker 管理容器執行環境。Image 是程式與依賴的打包範本，Container 是執行中的環境。Dockerfile 描述建置步驟。<a href="docker-compose-firecrawl.html#unit-2">看訓練箱比喻與名詞對照</a>。</p></details>
+            <details data-term="Docker Compose compose.yaml YAML 服務 Volume Port" data-category="code data"><summary>Docker Compose</summary><p>用 compose.yaml 定義服務、網路與儲存，再用 docker compose 指令啟停。Docker Desktop 已包含 Compose。<a href="docker-compose-firecrawl.html#unit-3">動手啟動本機網站</a>。</p></details>
+            <details data-term="Firecrawl 爬蟲 網頁擷取 Search Scrape Crawl Map" data-category="data"><summary>Firecrawl</summary><p>搜尋或擷取公開網頁，整理成 Markdown 等資料供人與 AI 使用。內容完整性、授權與官方答案需人工核對。<a href="docker-compose-firecrawl.html#unit-4">看單頁擷取練習</a>。</p></details>
+            <details data-term="LLM Model 大型語言模型 大腦" data-category="core"><summary>LLM／Model</summary><p>理解與產生文字、程式或多媒體內容的模型。提供能力，不等於完整工作流程。</p></details>
+            <details data-term="Agent 代理 行動 工具" data-category="core"><summary>Agent</summary><p>在目標下規劃步驟、使用工具、觀察結果並持續修正的系統角色。</p></details>
+            <details data-term="Harness 框架 執行層 權限 Log 測試" data-category="core safety"><summary>Harness</summary><p>包圍 Agent 的執行與控制層，負責 Context、工具、權限、記憶、測試、Log、停止、回復與完成判定。</p></details>
+            <details data-term="Context 脈絡 上下文 工作區" data-category="core"><summary>Context</summary><p>Agent 目前看得到的需求、檔案、對話、規則與工具結果。重要決定應寫入 Markdown，不只留在長對話裡。</p></details>
+            <details data-term="Token 額度 文字單位" data-category="core"><summary>Token</summary><p>模型處理文字的計量單位。重複貼大量資料會增加成本並稀釋重點。</p></details>
+            <details data-term="Prompt 提示詞 指令" data-category="core"><summary>Prompt</summary><p>交給模型的任務說明。好 Prompt 應寫清楚使用者、輸入、輸出、限制與完成條件。</p></details>
+            <details data-term="Markdown md README SPEC" data-category="code"><summary>Markdown／.md</summary><p>人與 Agent 都容易閱讀的純文字格式，適合保存 SPEC、README、安全規則與交接紀錄。</p></details>
+            <details data-term="Git Repository Repo Commit 版本" data-category="code"><summary>Git／Repository／Commit</summary><p>Git 保存版本；Repository 是專案版本庫；Commit 是一次可追蹤、可回復的變更紀錄。</p></details>
+            <details data-term="PR Pull Request 程式碼審查 合併" data-category="code"><summary>PR／Pull Request</summary><p>提出「請檢查這些變更，再決定要不要合併」的協作請求。個人網站發布不一定需要 PR；多人協作時可讓同伴先審查。</p></details>
+            <details data-term="API 串接 介面" data-category="code data"><summary>API</summary><p>讓兩套系統以明確格式交換資料的介面。串接前要確認驗證、權限、錯誤處理與費用。</p></details>
+            <details data-term="SQL 資料庫 查詢 SELECT UPDATE" data-category="data code"><summary>SQL</summary><p>查詢與更新關聯式資料庫的語言。耗材管理先想清楚品項、數量、異動與權限；真正連資料庫時再學 SELECT、條件查詢與安全更新。</p></details>
+            <details data-term="MCP Model Context Protocol 工具" data-category="code"><summary>MCP</summary><p>讓 AI 應用以一致方式連接工具與資料來源的協定；安裝前仍要審查可讀寫範圍。</p></details>
+            <details data-term="RAG 檢索 增強 生成 向量搜尋" data-category="data"><summary>RAG</summary><p>先從核准資料找依據，再交給模型整理回答；來源品質與引用仍需人工確認。</p></details>
+            <details data-term="Database 資料庫 Sheet 試算表" data-category="data"><summary>Database／資料庫</summary><p>保存結構化資料與異動紀錄。課堂原型先用 CSV 或試算表，正式使用才評估帳號、權限、備份與稽核。</p></details>
+            <details data-term="Log 紀錄 軌跡 Audit" data-category="data safety"><summary>Log</summary><p>記錄輸入、操作時間、結果與錯誤，讓問題可以重現、追查和改善。</p></details>
+            <details data-term="Sandbox 沙箱 隔離" data-category="safety"><summary>Sandbox</summary><p>限制程式或 Agent 能接觸的檔案、命令與網路範圍，降低錯誤的影響半徑。</p></details>
+            <details data-term="Human in the Loop HITL 人工核准" data-category="safety"><summary>Human in the Loop</summary><p>在人機流程中預先設計必須由人檢查或批准的節點，不是出事後才補簽名。</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="workspace"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-3">Project、SPEC.md 與計畫審核</a>。完成後回到本節。</aside>
+<aside class="learning-gate"><strong>先定義成功。</strong>寫出核心流程、禁止事項、一個正常案例與一個失敗案例。先看<a href="#test">測試方法</a>，此時只寫預期結果，不必先做出程式。</aside>
+        <div class="section-heading"><span class="section-number">05</span><div><p class="eyebrow">先建立安全工作桌，再開始對話</p><h2>專案資料夾與 SPEC.md</h2></div></div>
+        <figure class="lesson-image compact"><img src="assets/03-workspace.png" alt="專案資料夾、Markdown 與 Token 示意"></figure>
+        <div class="two-column code-layout">
+          <div>
+            <h3>建議資料夾</h3>
+            <pre><code>ems-ai-lab/
+├── SPEC.md
+├── README.md
+├── SECURITY.md
+├── data/
+│   └── sample.csv
+├── output/
+└── tests/</code></pre>
+            <p>原始資料放 <code>data</code>，產出放 <code>output</code>。不要讓 Agent 直接覆蓋唯一一份原始檔。</p>
+          </div>
+          <div>
+            <h3>SPEC.md 最小模板</h3>
+            <div class="copy-block"><button class="copy-button" type="button">複製</button><pre><code># 專案名稱
+
+## 使用者與情境
+- 誰使用：
+- 何時使用：
+
+## 輸入／輸出
+- 輸入：
+- 輸出：
+
+## 核心流程
+1.
+2.
+3.
+
+## 本次不做
+- 不使用真實資料
+- 不自動公開發布
+
+## 完成條件與測試
+- 正常案例：
+- 錯誤案例：</code></pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="first-run"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-3">開啟 Antigravity 專案與核心流程教學</a>。完成後回到本節。</aside>
+<aside class="learning-gate"><strong>實作一：</strong>確認計畫 → 建立最小版本 → 測試。只做一條流程；本機可用後保留穩定版。安裝或除錯卡住，就縮小需求或改用同組可用電腦。</aside>
+        <div class="section-heading"><span class="section-number">06</span><div><p class="eyebrow">先規劃，再允許修改</p><h2>第一次把任務交給 Agent</h2></div></div>
+        <div class="steps">
+          <article><span>1</span><h3>指定範圍</h3><p>只開放目前專案資料夾，先要求讀取 SPEC.md。</p></article>
+          <article><span>2</span><h3>要求計畫</h3><p>先列檔案、工具、風險與測試，不要立即修改。</p></article>
+          <article><span>3</span><h3>小步執行</h3><p>一次建立最小版本，完成後先測試。</p></article>
+          <article><span>4</span><h3>看證據</h3><p>檢查畫面、Log、測試結果與修改檔案。</p></article>
+        </div>
+        <figure class="learning-diagram" aria-labelledby="build-diagram-title"><h3 id="build-diagram-title">圖解｜一個課堂作品怎麼從需求走到可用</h3><p>以虛構資料做一條核心流程；每一步都能停下來核對。</p><ol class="diagram-track" style="--diagram-count:4"><li><b>① 定義任務</b><span>醫護人員：領用 2 件耗材後，庫存要正確減少；寫入 SPEC.md。</span></li><li><b>② Agent 做最小版</b><span>限定資料夾與權限，只完成輸入、檢查與顯示結果。</span></li><li><b>③ 自己測試</b><span>正常領用 2 件；再試負數、空白與超量。</span></li><li class="gate"><b>④ 人工驗收</b><span>看畫面、資料與錯誤訊息。通過後才考慮發布。</span></li></ol><figcaption>同一做法可替換成 EMT 的 AED 教學模擬、醫師／教學者的題庫練習。</figcaption></figure>
+        <div class="copy-block prompt"><button class="copy-button" type="button">複製提示詞</button><pre><code>請先閱讀 SPEC.md，不要立即修改。
+先回覆：
+1. 你理解的唯一核心流程。
+2. 預計建立或修改的檔案。
+3. 需要的工具與權限。
+4. 兩個測試案例。
+5. 目前看見的風險。
+
+限制：只使用本專案中的虛構資料；輸出放在 output；
+不改 data 原始檔；不下載、不登入、不外傳、不刪除、不發布，
+除非我另行確認。</code></pre></div>
+      </section>
+
+      <section class="section" id="test"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-6">用 Antigravity 重現問題與進行最小修正</a>。完成後回到本節。</aside>
+<aside class="learning-gate"><strong>實作二：</strong>存檔、找一個問題、修正後回歸測試。不新接登入、正式資料庫或外部 API。</aside>
+        <div class="section-heading"><span class="section-number">07</span><div><p class="eyebrow">測試不是展示成功，而是刻意製造失敗</p><h2>完成最小版本，再小步迭代</h2></div></div>
+        <figure class="lesson-image compact"><img src="assets/05-mvp.png" alt="Plan Files Run Test 的最小版本流程"></figure>
+        <div class="test-grid">
+          <article><h3>正常測試</h3><p>一筆完整、格式正確的資料，能走完核心流程。</p></article>
+          <article><h3>錯誤測試</h3><p>空白、負數、錯誤格式、重複資料或不存在的檔案。</p></article>
+          <article><h3>回歸測試</h3><p>增加功能後，原本成功的兩個案例仍然成功。</p></article>
+          <article><h3>回復測試</h3><p>知道上一個穩定版本在哪裡，必要時能撤回。</p></article>
+        </div>
+        <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="test">測試一筆正常領用、一筆重複登錄及一筆負數數量；確認系統會提示而不是默默寫入。</p></aside>
+        <div class="copy-block"><button class="copy-button" type="button">複製除錯提示詞</button><pre><code>請先停止新增功能。
+根據以下資訊診斷，不要一次修改多個假設：
+- 位置：哪一頁／哪個功能
+- 重現步驟：
+- 預期結果：
+- 實際結果：
+- 完整錯誤訊息／Log：
+
+先說明最可能原因、要檢查的檔案與最小修正方式；
+修正後重跑原本成功的測試與這次失敗案例。</code></pre></div>
+      </section>
+
+      <section class="section alt" id="security"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-4">分清計畫審核、工具權限與 sandbox</a>。完成後回到本節。</aside>
+<aside class="learning-gate"><strong>發布前的關卡。</strong>畫出本次實際資料流；以下 LINE／API／資料庫圖是未來架構，不是本堂必做。localStorage 只在本機瀏覽器保存，不會同步給其他學員。未通過檢查就不公開。</aside>
+        <div class="section-heading"><span class="section-number">08</span><div><p class="eyebrow">能做不代表能公開</p><h2>資料流、資安與醫療內容覆核</h2></div></div>
+        <div class="image-pair">
+          <figure class="lesson-image compact"><img src="assets/07-dataflow.png" alt="LINE、Webhook、API、試算表、資料庫與 AI 資料流"></figure>
+          <figure class="lesson-image compact"><img src="assets/08-security.png" alt="個資、外部傳輸、供應鏈、輸出驗證、過度代理與醫療覆核六道防線"></figure>
+        </div>
+        <figure class="learning-diagram" aria-labelledby="data-diagram-title"><h3 id="data-diagram-title">圖解｜什麼時候才需要 API 與資料庫？</h3><p>只在自己的瀏覽器練習，可先用靜態網頁與假資料；多人同步、登入或 LINE 通知才需要另外設計服務。</p><ol class="diagram-track" style="--diagram-count:4"><li><b>① 使用者畫面</b><span>EMT 或醫護人員在手機輸入練習資料；畫面不應存放秘密金鑰。</span></li><li><b>② API／後端</b><span>檢查身分、權限、格式與業務規則，再決定是否寫入。</span></li><li><b>③ 資料庫</b><span>保存品項、異動紀錄與時間；需備份、稽核與存取控管。</span></li><li class="gate"><b>④ 外部服務</b><span>LINE 或 AI 串接屬選配；先確認資料會送去哪裡及費用。</span></li></ol><div class="diagram-note">資料流是設計基線，不是每個專案必須有四層。真實病人、勤務及人員資料不得直接帶入課堂原型。</div></figure>
+        <div class="risk-table" role="table" aria-label="權限紅黃綠燈">
+          <div class="risk-row risk-head" role="row"><span>層級</span><span>例子</span><span>處理方式</span></div>
+          <div class="risk-row green-row" role="row"><span>綠燈</span><span>專案內建立新檔、跑既定測試</span><span>可在限定工作區執行</span></div>
+          <div class="risk-row yellow-row" role="row"><span>黃燈</span><span>下載、登入、安裝套件、外部 API、資料異動</span><span>先說明資料流與影響，再人工批准</span></div>
+          <div class="risk-row red-row" role="row"><span>紅燈</span><span>真實病歷、未知外傳、大量刪改、公開秘密金鑰</span><span>停止，改用假資料或正式治理流程</span></div>
+        </div>
+        <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="governance">先問資料是否含病人、同仁或院內營運資訊；若答案是「有」，就不能把課堂原型直接接上正式資料。</p></aside>
+      </section>
+
+      <section class="section" id="publish">
+<aside class="learning-gate"><strong>全班統一先走 GitHub Pages。</strong>其他代管為課後選項。沒有安全核准不發布；遇到帳號或部署延遲，先交本機可用版本與待辦，不跳過驗收。</aside>
+        <div class="section-heading"><span class="section-number">09</span><div><p class="eyebrow">先發布沒有敏感資料的靜態網站</p><h2>把完成檔案放到免費網址</h2></div></div>
+        <figure class="lesson-image compact"><img src="assets/06-publish.png" alt="本機、版本庫、公開頁面與正式系統的成熟度"></figure>
+        <figure class="learning-diagram" aria-labelledby="git-diagram-title"><h3 id="git-diagram-title">圖解｜Git 記版本，GitHub 放遠端，PR 供協作審查</h3><p>先確認檔案與秘密資料，再選擇上傳方式；首次上課可直接用 GitHub 網頁上傳。</p><ol class="diagram-track" style="--diagram-count:5"><li><b>① 本機修改</b><span>完成網站並用 <code>git status</code> 看改了什麼。</span></li><li class="gate"><b>② 選擇檔案</b><span>確認沒有病人資料、密碼、<code>.env</code>；再逐項加入。</span></li><li><b>③ Commit</b><span>把核准變更記成可追蹤版本。</span></li><li><b>④ Push</b><span>把版本送到 GitHub；公開庫裡的檔案可被看見。</span></li><li><b>⑤ PR（選用）</b><span>多人協作時請同伴審查後合併；個人 Pages 不必先做 PR。</span></li></ol><figcaption>Git 與 GitHub 不相同；PR 也不是「一鍵部署」。參考 <a href="https://docs.github.com/en/pull-requests/get-started/about-pull-requests" target="_blank" rel="noopener">GitHub 官方 PR 說明 ↗</a>。</figcaption></figure>
+        <aside class="warning-card publish-warning"><span class="warning-icon">!</span><div><h3>公開前先理解</h3><p>免費服務提供的通常是 <code>github.io</code>、<code>netlify.app</code>、<code>pages.dev</code> 或 <code>vercel.app</code> 子網域。自己的 <code>.com</code>／<code>.tw</code> 通常需要另外購買。任何公開網址都不得包含病人資料、帳密或 API Key。</p></div></aside>
+
+        <p>若作品加入 Docker 或資料庫，先看 <a href="docker-compose-firecrawl.html#unit-3">容器系統與靜態網站代管的差別</a>。compose.yaml 不能直接放到 GitHub Pages 執行。</p>
+        <div class="deploy-tabs" role="tablist" aria-label="部署方式">
+          <button class="deploy-tab" type="button" data-deploy="netlify" role="tab">拖曳最快</button>
+          <button class="deploy-tab active" type="button" data-deploy="github" role="tab">GitHub Pages</button>
+          <button class="deploy-tab" type="button" data-deploy="cloudflare" role="tab">Cloudflare Pages</button>
+          <button class="deploy-tab" type="button" data-deploy="vercel" role="tab">Vercel</button>
+        </div>
+
+        <div class="deploy-panel" data-panel="netlify">
+          <div><span class="route-chip">初學者最快</span><h3>Netlify Drop：整個資料夾拖上去</h3><ol><li>確認根目錄有 <code>index.html</code>。</li><li>打開 Netlify Drop 並登入。</li><li>把網站資料夾或 ZIP 拖入上傳區。</li><li>取得 <code>netlify.app</code> 網址，用手機測試。</li><li>更新時重新拖入最新版輸出資料夾。</li></ol></div>
+          <div class="deploy-links"><a class="primary-button" href="https://app.netlify.com/drop" target="_blank" rel="noopener">前往 Netlify Drop ↗</a><a href="https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/" target="_blank" rel="noopener">官方教學 ↗</a></div>
+        </div>
+        <div class="deploy-panel active" data-panel="github">
+          <div><span class="route-chip">最適合版本管理</span><h3>GitHub Pages：每次 Push 自動更新</h3><ol><li>先檢查公開清單，建立公開 Repository；可用 Add file → Upload files 上傳網站檔案，或使用 Git Push。index.html 必須位於根目錄。</li><li>進入 Settings → Pages。</li><li>選擇從 Branch 部署，指定 <code>main</code> 與根目錄。</li><li>等待產生 <code>username.github.io/repository</code> 網址。</li><li>之後更新檔案並 Commit；使用本機 Git 者再 Push。部署完成後用手機及無痕視窗驗證。</li></ol></div>
+          <div class="deploy-links"><a class="primary-button" href="https://docs.github.com/en/pages/quickstart" target="_blank" rel="noopener">GitHub Pages 官方教學 ↗</a><a href="https://github.com/new" target="_blank" rel="noopener">建立 Repository ↗</a></div>
+        </div>
+        <div class="deploy-panel" data-panel="cloudflare">
+          <div><span class="route-chip">可拖曳或連 Git</span><h3>Cloudflare Pages：取得 pages.dev 網址</h3><ol><li>進入 Workers &amp; Pages，建立 Pages 專案。</li><li>選 Direct Upload 的 Drag and drop。</li><li>上傳單一資料夾或 ZIP。</li><li>部署後取得 <code>project.pages.dev</code>。</li><li>若未來要自動更新，可另建 Git integration 專案。</li></ol></div>
+          <div class="deploy-links"><a class="primary-button" href="https://developers.cloudflare.com/pages/get-started/direct-upload/" target="_blank" rel="noopener">Direct Upload 官方教學 ↗</a><a href="https://developers.cloudflare.com/pages/get-started/git-integration/" target="_blank" rel="noopener">Git 整合 ↗</a></div>
+        </div>
+        <div class="deploy-panel" data-panel="vercel">
+          <div><span class="route-chip">個人專案選配</span><h3>Vercel：連接個人 Git Repository</h3><ol><li>使用 GitHub 登入 Vercel。</li><li>Import 個人 Repository。</li><li>純靜態網站通常不需要額外 Build 設定。</li><li>部署後取得 <code>project.vercel.app</code>。</li><li>Hobby 方案限個人、非商業用途；正式課程服務先確認方案條款。</li></ol></div>
+          <div class="deploy-links"><a class="primary-button" href="https://vercel.com/new" target="_blank" rel="noopener">建立 Vercel 專案 ↗</a><a href="https://vercel.com/docs/plans/hobby" target="_blank" rel="noopener">Hobby 方案說明 ↗</a></div>
+        </div>
+
+        <h3 class="subheading">交給 Agent 的發布前提示詞</h3>
+        <div class="copy-block"><button class="copy-button" type="button">複製</button><pre><code>請先做公開發布檢查，不要直接上傳。
+1. 列出準備公開的所有檔案。
+2. 搜尋姓名、病歷號、Email、電話、院內網址、絕對路徑。
+3. 搜尋 API Key、Token、密碼、.env 與秘密設定。
+4. 確認根目錄有 index.html，所有連結與圖片使用相對路徑。
+5. 在本機啟動並測試手機寬度、重新整理與錯誤頁面。
+6. 更新 README：用途、限制、資料來源、授權與回復方式。
+
+完成後只回報檢查結果與預計上傳清單，等待我人工確認。</code></pre></div>
+      </section>
+
+      <section class="section alt" id="feedback">
+<aside class="learning-gate"><strong>回饋與展示：</strong>收一筆匿名回饋、寫一項改善；展示痛點、功能與失敗防護。</aside>
+        <div class="section-heading"><span class="section-number">10</span><div><p class="eyebrow">不要只問喜不喜歡</p><h2>用 Log 與回饋改善下一版</h2></div></div>
+        <figure class="lesson-image compact"><img src="assets/ppt-quiz-feedback.png" alt="即時作答、遊戲互動與配對題的學習回饋形式" loading="lazy"><figcaption>互動方式可移植到 EMS 教學；圖中的一般知識題只是介面示例，正式練習題仍由講師核准。</figcaption></figure>
+        <div class="metric-grid">
+          <article><strong>完成率</strong><span>是否完成核心流程</span></article>
+          <article><strong>任務時間</strong><span>從開始到成功多久</span></article>
+          <article><strong>求助次數</strong><span>在哪裡需要協助</span></article>
+          <article><strong>失敗位置</strong><span>安裝、輸入、流程或發布</span></article>
+        </div>
+        <p>15 人的小班資料適合形成性改善，不宜宣稱一般化成效。收集前先說明目的、保存期限與誰能看到；個人表現不要公開排名。</p>
+        <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="measure">除了完成率，也記錄是否減少漏填、重複輸入與交班追問；不要只問「好不好用」。</p></aside>
+        <div class="timeline"><div><strong>7 天</strong><span>找 2 位同儕試用</span></div><div><strong>14 天</strong><span>整理錯誤與回饋</span></div><div><strong>30 天</strong><span>若接真實資料，啟動治理</span></div></div>
+      </section>
+
+      <section class="section alt" id="tool-extension">
+<aside class="learning-gate"><strong>延伸學習：</strong>先完成核心原型，再選環境打包或來源擷取。</aside>
+        <div class="section-heading"><span class="section-number">11</span><div><p class="eyebrow">延伸學習</p><h2>Docker、Compose 與 Firecrawl</h2></div></div>
+        <p>想把同一版訓練網站交給各組，或把核准網頁整理成題庫草稿？先分清執行環境、服務配置與資料取得這三件事。</p>
+        <div class="concept-grid">
+          <article><h3>Docker：統一執行環境</h3><p>像一套規格一致的訓練箱。Image 是打包範本，Container 是正在執行的環境。</p><a href="docker-compose-firecrawl.html#unit-2">認識 Docker 名詞</a></article>
+          <article><h3>Compose：管理整組服務</h3><p>用一份 compose.yaml 管理網站、API 與資料庫；入門先練習一個網站的啟動、Log 與停止。</p><a href="docker-compose-firecrawl.html#unit-3">安裝與本機操作</a></article>
+          <article><h3>Firecrawl：整理網頁來源</h3><p>先找候選頁，取得允許使用的單頁內容，再核對來源、日期、缺漏與答案。</p><a href="docker-compose-firecrawl.html#unit-4">題庫來源整理練習</a></article>
+        </div>
+        <div class="callout"><p>Docker 不會自動提供公開網址；Firecrawl 雲端服務不需要先安裝 Docker。初學者可先看示範，原本的靜態網站練習仍可獨立完成。</p></div>
+        <p><a class="primary-button" href="docker-compose-firecrawl.html">依序閱讀完整延伸教學</a>　<a href="downloads/docker-lab_20260917_1440.zip" download>下載 Docker 練習包</a></p>
+      </section>
+
+      <section class="section" id="extensions">
+<aside class="learning-gate"><strong>課後選讀。</strong>本區臨床教育框架來自使用者提供的演講整理筆記；本次未獨立核驗講者歸屬或官方標準，不據此做高風險能力判定。</aside>
+        <div class="section-heading"><span class="section-number">12</span><div><p class="eyebrow">先建立人的能力，再讓 AI 協作</p><h2>臨床推理與 3D 解剖延伸</h2></div></div>
+        <div class="image-pair">
+          <figure class="lesson-image compact"><img src="assets/09-reasoning.png" alt="Think、Commit、Ask AI、Review 的臨床推理流程"><figcaption>先留下自己的推理，再與 AI 比較、查證與調和。</figcaption></figure>
+          <figure class="lesson-image compact"><img src="assets/10-anatomy.png" alt="Z-Anatomy、Open Anatomy 與 AnatomyTOOL 三種開放 3D 解剖資源"><figcaption>選資源以前先定義教學任務，並逐項核對授權。</figcaption></figure>
+        </div>
+        <div class="callout"><strong>推理口訣：</strong>Think → Commit → Ask AI → Compare → Verify → Reconcile → Decide → Reflect。</div>
+        <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="reasoning">先寫下自己的觀察、優先問題與需要回報的紅旗，再讓 AI 協助整理；AI 不取代臨床評估與通報責任。</p></aside>
+        <div class="resource-links"><a href="https://lluisv.itch.io/z-anatomy" target="_blank" rel="noopener">Z-Anatomy ↗</a><a href="https://www.openanatomy.org/" target="_blank" rel="noopener">Open Anatomy Project ↗</a><a href="https://anatomytool.org/open3dmodel" target="_blank" rel="noopener">AnatomyTOOL ↗</a></div>
+      </section>
+
+      <section class="section alt" id="faq">
+        <div class="section-heading"><span class="section-number">13</span><div><p class="eyebrow">卡住時先縮小問題</p><h2>常見問題與官方資源</h2></div></div>
+        <div class="faq-list">
+          <details><summary>三個程式一定要全部安裝嗎？</summary><p>不一定。主課程先做 HTML／CSS／JavaScript 靜態網站；Python 只在使用腳本或本機伺服器時需要。Git 可用網頁上傳暫代；VS Code 是閱讀程式的選項。Node.js 只有使用 npm、現代前端框架或特定工具時才需要。若安裝遇到問題，先使用同組電腦或免安裝方案。</p></details>
+          <details><summary>我不會寫程式也能參加嗎？</summary><p>可以。學習目標是把需求寫清楚、讓 Agent 先規劃、看懂測試結果並控制風險，不是背語法。</p></details>
+          <details><summary>為什麼 Agent 讀不到檔案？</summary><p>先確認檔案位於目前專案資料夾、名稱與路徑正確，而且平台已取得該資料夾權限。不要因為讀不到就開放整台電腦。</p></details>
+          <details><summary>可以直接發布有 Google 試算表或 LINE 的版本嗎？</summary><p>不建議把課堂原型直接當正式系統。前端不得放秘密金鑰；Webhook、帳號、資料庫與病人資料需要後端、驗證、權限、Log、備份與正式資安治理。</p></details>
+          <details><summary>網站發布後就是自己的網域嗎？</summary><p>先得到平台免費子網域；若要自己的 .com 或 .tw，通常需要向網域註冊商購買，再依平台文件設定 DNS。</p></details>
+        </div>
+        <div class="official-grid">
+          <a href="https://www.python.org/downloads/" target="_blank" rel="noopener"><strong>Python</strong><span>官方下載</span></a>
+          <a href="https://git-scm.com/downloads" target="_blank" rel="noopener"><strong>Git</strong><span>官方下載</span></a>
+          <a href="https://docs.github.com/en/pages/quickstart" target="_blank" rel="noopener"><strong>GitHub Pages</strong><span>官方快速開始</span></a>
+          <a href="https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/" target="_blank" rel="noopener"><strong>Netlify Drop</strong><span>官方快速開始</span></a>
+          <a href="https://developers.cloudflare.com/pages/get-started/direct-upload/" target="_blank" rel="noopener"><strong>Cloudflare Pages</strong><span>官方 Direct Upload</span></a>
+          <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener"><strong>OWASP GenAI</strong><span>安全風險參考</span></a>
+        </div>
+        <p class="source-note">介面、免費額度與方案條款可能調整；請以官方頁面為準。</p>
+      </section>
+      <section class="completion-card" aria-labelledby="completeTitle">
+        <div><p class="eyebrow">完成一輪，不等於正式上線</p><h2 id="completeTitle">你已走完第一個可驗證迭代</h2><p>能做、值得做、可以正式使用，是三個不同的判斷。若下一步要接真實資料、LINE、資料庫或正式網域，請停止自行擴充，改啟動機構治理。</p></div>
+        <button class="primary-button" id="resetProgress" type="button">重設學習進度</button>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p><strong>EMS × AI 醫療救護 AI Agent 實作</strong></p>
+    <p>版本：2026-09-17 14:40｜新增 Docker、Compose 與 Firecrawl 延伸實作｜教學原型，不提供即時醫療建議。</p>
+    <p>Harness 來源：<a href="https://code.visualstudio.com/docs/agents/concepts/agent-harnesses" target="_blank" rel="noopener">VS Code Agent Harnesses</a>、<a href="https://arxiv.org/abs/2605.13357" target="_blank" rel="noopener">AI Harness Engineering</a></p>
+  </footer>
+</body>
+</html>
