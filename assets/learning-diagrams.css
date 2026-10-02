@@ -1,0 +1,12 @@
+.learning-diagram{margin:1.5rem 0;padding:1.25rem;background:#f7fbfc;border:1px solid #c7dadd;border-left:5px solid #087f8c;border-radius:14px;color:#17313a}
+.learning-diagram h3{margin:.1rem 0 .35rem;color:#123b55}
+.learning-diagram>p{margin:.35rem 0 1rem}
+.diagram-track{display:grid;grid-template-columns:repeat(var(--diagram-count,4),minmax(0,1fr));gap:1rem;list-style:none;margin:1.15rem 0;padding:0}
+.diagram-track li{position:relative;min-width:0;padding:1rem;background:#fff;border:1px solid #d0e0e3;border-top:4px solid #168895;border-radius:10px;box-shadow:0 2px 8px #17313a0a}
+.diagram-track li+li::before{content:'→';position:absolute;left:-.89rem;top:42%;font-size:1.25rem;font-weight:800;color:#0a7280;background:#f7fbfc;line-height:1}
+.diagram-track b{display:block;color:#0b5260;font-size:1.05rem;margin-bottom:.4rem}
+.diagram-track span{display:block;line-height:1.55;font-size:.94rem}
+.diagram-track .gate{border-top-color:#b36617;background:#fffaf2}
+.diagram-note{padding:.65rem .8rem;border-radius:8px;background:#e6f2f2;color:#164852;line-height:1.55}
+.learning-diagram figcaption{font-size:.88rem;color:#405d67;line-height:1.5}
+@media(max-width:800px){.diagram-track{grid-template-columns:1fr;gap:1.1rem}.diagram-track li+li::before{content:'↓';left:calc(50% - .35rem);top:-1.13rem}.learning-diagram{padding:1rem}}
