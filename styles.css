@@ -229,3 +229,4 @@ main { min-width: 0; }
 .course-schedule,.learning-gate{background:#edf7f7;border-left:5px solid #177c80;color:#15344b;padding:20px 24px;margin:24px 0;border-radius:10px;line-height:1.8}.table-scroll{overflow-x:auto}.course-schedule table{width:100%;border-collapse:collapse;font-size:15px}.course-schedule th,.course-schedule td{padding:10px 12px;border-bottom:1px solid #b8cdd3;text-align:left}.course-schedule th{background:#d9ecef;color:#12344b}.course-schedule td:first-child{white-space:nowrap}.learning-gate a{color:#075b74;text-decoration:underline}
 
 .hero .eyebrow{color:#b7e9e8}.hero .hero-meta{color:#d5e4ec}.hero .hero-meta li::before{color:#b7e9e8}
+.callout.fullstack-entry{display:block}.fullstack-entry h3{margin:0 0 .75rem;color:#143b54}.fullstack-entry p{margin:.75rem 0;line-height:1.85}.fullstack-entry p:last-child{font-size:.96rem}.fullstack-entry .primary-button{display:inline-flex;max-width:100%;white-space:normal}
