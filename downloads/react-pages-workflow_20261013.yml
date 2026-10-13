@@ -1,0 +1,48 @@
+# 僅供另外建立的 React/Vite 練習儲存庫，不放到 AIedu 教學網站。
+# 基於 Vite 官方 static-deploy 範本，查核 2026-10-13。
+# Settings > Pages > Source: GitHub Actions。
+# 必須提交 package-lock.json，並在 vite.config.js 設定正確 base。
+# VITE_* 全部會公開到前端；不可放任何金鑰或密碼。
+name: Deploy React lab to Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Set up Node 24 LTS
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+        env:
+          VITE_APPS_SCRIPT_URL: ${{ vars.VITE_APPS_SCRIPT_URL }}
+          VITE_QUESTION_COUNT: ${{ vars.VITE_QUESTION_COUNT }}
+          VITE_PASS_THRESHOLD: ${{ vars.VITE_PASS_THRESHOLD }}
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - name: Upload dist
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: ./dist
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346

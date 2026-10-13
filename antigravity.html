@@ -1,5 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Antigravity 先修操作指南｜EMSXAI</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="extension.css"><script defer src="extension.js"></script><style>.ag-guide{max-width:1120px;margin:auto;padding:60px 24px 60px;line-height:1.85}.ag-guide h2{margin-top:48px;scroll-margin-top:90px;border-top:1px solid #b8cdd3;padding-top:24px}.ag-guide table{border-collapse:collapse;width:100%;font-size:16px}.ag-guide th,.ag-guide td{border:1px solid #c4d6db;padding:12px;vertical-align:top}.ag-guide th{background:#e6f3f4}.ag-guide pre{white-space:pre-wrap;overflow-wrap:anywhere}.ag-guide a{overflow-wrap:anywhere}.ag-guide h1{font-size:clamp(28px,4vw,44px)}.ag-guide .copy-block{overflow:hidden}.ag-guide p,.ag-guide li{color:#23445c}</style></head><body><header class="site-header"><a class="brand" href="index.html#workspace">← 返回主課程</a><span>Antigravity 先修</span></header><main class="ag-guide"><aside class="learning-gate">本堂只學 Antigravity；Codex 後續銜接。<a href="downloads/Antigravity操作指南_20260924_1749.md" download>下載完整指南 .md</a></aside><h1>Google Antigravity：醫療救護工作坊操作指南</h1><details class="detail-box"><summary>章節目錄（依序學習或跳到實作）</summary><nav class="extension-toc" aria-label="Antigravity 教學目錄"><a href="#ag-1">1. 課前：先確認是哪個版本</a><a href="#ag-2">2. 必須先懂的六個觀念</a><a href="#ag-3">3. 一個 Project、一條核心流程</a><a href="#ag-4">4. 計畫審核與工具權限是兩道關卡</a><a href="#ag-6">5. 用證據除錯</a><a href="#ag-7">6. 八個省力習慣</a><a href="#ag-8">7. Rules、Skills 與 Workflows：課後再學</a><a href="#ag-9">8. 常見卡關與處理</a><a href="#ag-10">9. 後續才學 Codex：帶作品與方法過去</a><a href="#ag-12">官方參考資料</a></nav></details>
-<p>版本：2026-09-24 16:42（Asia/Taipei）。本堂先用 <strong>Antigravity</strong> 完成一個原型，<strong>Codex 留到下一階段</strong>。全程假資料，不連院內系統。</p>
+<p>版本：2026-10-13 17:54（Asia/Taipei）。本堂先用 <strong>Antigravity</strong> 完成一個原型，<strong>Codex 留到下一階段</strong>。全程假資料，不連院內系統。</p>
+<aside class="learning-gate"><strong>完成核心原型後：</strong><a href="fullstack-lab.html">閱讀 React × Apps Script × Sheets 全端架設</a>，依序學習 API、資料欄位、部署與驗收。2025 年影片的免費方案與介面不可直接套用；本次已依官方 Rules／Permissions 文件核對權限概念，不把舊模式名稱當成安全保證。</aside>
 <aside class="learning-gate"><a href="tools-checklist.html">先看 Antigravity 與 Codex 工具清單</a>：依案例選配，不必全部安裝。</aside><h2 id="ag-1">1. 課前：先確認是哪個版本</h2>
 <p>Google 目前分別提供獨立 Antigravity App、Antigravity IDE，以及 CLI／SDK。本教材以獨立 App 為主，附 IDE 對照。請以課程指定的產品與版本操作。<a href="https://codelabs.developers.google.com/getting-started-google-antigravity">Google 入門課</a></p>
 <p>2026-09-22 的 2.17.0 更新把相關設定稱為 <strong>Plan Review Policy</strong>，並介紹 <code>/plan</code>。舊教材可能仍稱 Artifact Review Policy、Planning／Fast。版本分批推出，請以已安裝介面與對應文件為準，不能假設所有人的按鈕相同。<a href="https://antigravity.google/changelog">更新紀錄</a></p>
@@ -87,7 +88,7 @@
 <td>計畫、程式差異、測試或操作紀錄</td>
 </tr>
 </tbody></table></div>
-<p>Antigravity 是操作 Agent 的開發工具環境，不等於某一個模型。Artifact 可協助檢視成果，但**「AI 說完成」不是實際驗收**。<a href="https://antigravity.google/docs/artifacts/">Artifacts 官方說明</a></p>
+<p>Antigravity 是操作 Agent 的開發工具環境，不等於某一個模型。Artifact 可協助檢視成果，但<strong>「AI 說完成」不是實際驗收</strong>。<a href="https://antigravity.google/docs/artifacts/">Artifacts 官方說明</a></p>
 <h2 id="ag-3">3. 一個 Project、一條核心流程</h2>
 
 <ol><li>選對 Project，指向 SPEC.md。</li><li>寫清核心流程和測試。</li><li>用 /plan 檢查計畫，核對權限。</li></ol>
@@ -104,7 +105,7 @@
 <p>用附件或 <code>@</code> 檔案選單指向 SPEC.md；介面不同時直接提供專案內相對路徑，並要求 Agent 回報讀到的檔案名稱。不要假設它記得上一段對話。<a href="https://codelabs.developers.google.com/getting-started-google-antigravity">Project 入門</a></p>
 <h2 id="ag-4">4. 計畫審核與工具權限是兩道關卡</h2>
 <p><code>/plan</code> 用來先整理需求與產生可審核計畫。檢查是否有檔案清單、依賴、限制及驗收步驟，再允許進入實作。<a href="https://antigravity.google/docs/plan/">Plan 官方說明</a></p>
-<p>**課堂教學建議：**計畫採每次審核，不使用自動略過計畫審查。需求模糊、跨檔修改或新增功能都先規劃。若 IDE 有 Fast，僅考慮已明確限定的低風險小修正，仍需測試；不拿「速度快」當作開放權限的理由。<a href="https://antigravity.google/docs/artifact-review">Artifact Review</a></p>
+<p><strong>課堂教學建議：</strong>計畫採每次審核，不使用自動略過計畫審查。需求模糊、跨檔修改或新增功能都先規劃。若 IDE 有 Fast，僅考慮已明確限定的低風險小修正，仍需測試；不拿「速度快」當作開放權限的理由。<a href="https://antigravity.google/docs/artifact-review">Artifact Review</a></p>
 <p>工具權限另行處理檔案、指令與對外操作。官方文件中 macOS／Linux 的 Default 搭配 sandbox，而 <strong>Request Review 權限預設並不等於開啟 sandbox</strong>。它也與同名的計畫審核選項不同。Windows 與分批更新版本可能有不同邊界。不能只看設定名稱就保證安全。<a href="https://antigravity.google/docs/permissions">Permissions</a></p>
 <p>本課程先保留隔離與最小範圍，再針對需要的操作確認；不啟用 Turbo 或全域無限制執行。看不懂權限時先停止，請它說明影響，而非一律按允許。</p>
 <div class="table-scroll"><table>
