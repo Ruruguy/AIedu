@@ -8,6 +8,8 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b2a5b'/%3E%3Cpath d='M28 12h8v16h16v8H36v16h-8V36H12v-8h16z' fill='%2325a6a6'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="assets/learning-diagrams.css">
+  <link rel="stylesheet" href="assets/knowledge-map.css">
+  <link rel="stylesheet" href="assets/integrated-terms.css">
   <script defer src="app.js"></script>
 </head>
 <body>
@@ -28,7 +30,7 @@
   <div class="page-shell" id="top">
     <aside class="course-nav" id="courseNav" aria-label="課程章節">
       <p class="nav-title"><a href="antigravity.html">Antigravity 操作指南</a></p>
-      <p class="nav-title"><a href="knowledge-map.html">知識地圖｜名詞相互關係</a></p>
+      <p class="nav-title"><a href="#glossary">知識地圖｜名詞相互關係</a></p>
       <nav>
         <a href="#start"><span>00</span>開始學習</a>
         <a href="#prepare"><span>01</span>課前準備</a>
@@ -120,7 +122,7 @@
         </div>
       </section>
 
-      <section class="section alt" id="install"><aside class="learning-gate"><strong>操作速查：</strong><a href="antigravity-shortcuts.html">Antigravity 快捷鍵與指令</a>｜分清 App、IDE、CLI；含 Mac／Windows 對照與醫療救護練習。</aside><aside class="learning-gate"><strong>工具準備總表：</strong><a href="tools-checklist.html">Antigravity 與 Codex 必備／選配工具清單</a>，包含官方連結、案例配置與驗證方式。<a href="downloads/Antigravity與Codex_工具安裝清單_20260924_1749.md" download>下載 .md</a>。</aside><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-1">課前完成 Antigravity 安裝與版本確認</a>。完成後回到本節。</aside>
+      <section class="section alt" id="install"><aside class="learning-gate"><strong>操作速查：</strong><a href="antigravity-shortcuts.html">Antigravity 快捷鍵與指令</a>｜分清 App、IDE、CLI；含 Mac／Windows 對照與醫療救護練習。</aside><aside class="learning-gate"><strong>工具準備總表：</strong><a href="tools-checklist.html">Antigravity 與 Codex 必備／選配工具清單</a>，包含官方連結、案例配置與驗證方式。<a href="downloads/Antigravity與Codex_工具安裝清單_20260924_1749.md" download>下載 .md</a>。</aside><aside class="learning-gate"><strong>先確認環境：</strong>開啟 Antigravity，完成登入、確認版本與用量，並用練習資料夾做一次簡短測試。純靜態網頁不必先安裝所有語言工具。</aside>
 <aside class="learning-gate"><strong>主路線：</strong>Antigravity、瀏覽器、練習資料夾；發布由每組一位使用 GitHub 帳號。先確認能產出與開啟靜態 HTML。Python、Node.js、Docker 不是全部必裝。</aside>
         <div class="section-heading">
           <span class="section-number">02</span>
@@ -186,7 +188,7 @@
           <article><span>教學者</span><strong>題庫／回饋／課程</strong><p>把學習目標、形成性評量與改善資料一起設計。</p></article>
         </div>
         <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="project">優先選「耗材管理」：以班別、領用、效期與交班查核為核心；先用虛構試算表，不連院內系統。</p></aside>
-        <figure class="lesson-image"><img src="assets/ppt-ems-roadmap.png" alt="EMS 從通報、派遣、現場、後送到教育與整備的 AI 應用概念地圖" loading="lazy"><figcaption>簡報的 EMS 應用地圖供選題參考。這堂課仍只選題庫、AED 訓練或耗材管理其中一條；圖中其他項目不是已上線系統或即時醫療建議。</figcaption></figure>
+        <figure class="lesson-image"><img src="assets/ppt-ems-roadmap.png" alt="EMS 從通報、派遣、現場、後送到教育與整備的 AI 應用概念地圖" loading="lazy"><figcaption>EMS 應用構想供選題參考，並非新版簡報頁面的逐頁截圖。這堂課仍只選題庫、AED 訓練或耗材管理其中一條；圖中其他項目不是已上線系統或即時醫療建議。</figcaption></figure>
         <p>題庫來源整理可接續 <a href="docker-compose-firecrawl.html#unit-4">Firecrawl 單頁擷取與人工覆核練習</a>；需要讓各組使用一致的網站環境，可接續 <a href="docker-compose-firecrawl.html#unit-3">Docker Compose 本機操作</a>。</p>
         <div class="project-grid">
           <article class="project-card green">
@@ -205,63 +207,69 @@
             <p class="mini">接 LINE、帳號或正式資料庫前，先畫資料流與人工停止點。</p>
           </article>
         </div>
-        <figure class="lesson-image compact ppt-aed-visual"><img src="assets/ppt-aed-simulator.png" alt="AED 教學模擬器與生理監測介面的概念圖" loading="lazy"><figcaption>簡報中的裝置概念圖，僅用於討論訓練介面；實作流程須由合格講師覆核，不代表真實 AED 操作指引。</figcaption></figure>
+        <figure class="lesson-image compact ppt-aed-visual"><img src="assets/ppt-aed-simulator.png" alt="AED 教學模擬器與生理監測介面的概念圖" loading="lazy"><figcaption>與新版簡報設備模擬主題對照的概念圖，僅用於討論訓練介面；實作流程須由合格講師覆核，不代表真實 AED 操作指引。</figcaption></figure>
       </section>
 
-      <section class="section" id="mental-model">
-        <div class="section-heading">
-          <span class="section-number">04</span>
-          <div><p class="eyebrow">先分清誰提供能力、誰執行、誰管理</p><h2>Model、Agent、Harness 與 App</h2></div>
-        </div>
-        <figure class="lesson-image"><img src="assets/01-model-agent-harness.png" alt="Model、Agent、Harness 與 App 的差異圖"><figcaption>Harness 不一定出現在畫面上，卻決定 Agent 能看什麼、做什麼，以及如何驗證。</figcaption></figure>
-        <div class="concept-grid">
-          <article><span class="concept-no coral-bg">1</span><h3>Model／LLM</h3><p>提供語言、推理與產生內容的能力，像大腦；可能答錯，本身不等於會操作檔案。</p></article>
-          <article><span class="concept-no orange-bg">2</span><h3>Agent</h3><p>根據目標選下一步並呼叫工具，像執行勤務的人。</p></article>
-          <article><span class="concept-no teal-bg">3</span><h3>Harness</h3><p>管理 Context、工具、權限、測試、Log、停止與回復，像勤務規範與督導系統。</p></article>
-          <article><span class="concept-no navy-bg">4</span><h3>App</h3><p>最後給使用者操作的介面，還包含資料流、帳號、紀錄與維護。</p></article>
-        </div>
-        <div class="callout"><strong>一句記法：</strong>Agent 做事；Harness 讓它可控、可查、可停。</div>
-        <figure class="lesson-image compact"><img src="assets/02-agent-loop.png" alt="Agent 在 Harness 內進行 Plan、Act、Observe、Adjust 循環"></figure>
+      <section class="section" id="mental-model"><div class="section-heading"><span class="section-number">04</span><div><p class="eyebrow">名詞不用分頁找，先看它們一起做什麼</p><h2>AI 名詞、圖解與相互關係</h2></div></div><p>從你提出需求，到 Agent 使用模型與工具完成作品，再到資料保存與發布：這些名詞描述不同層次，不是一份全部都要安裝的清單。展開一組，就能同時看定義、關聯與醫療救護例子。</p><div id="glossary" class="glossary-block knowledge-map integrated-terms"><div class="glossary-head"><div><p class="eyebrow">同一處查定義、看關係、看醫療救護例子</p><h3>名詞與關聯總覽</h3></div><input id="glossarySearch" type="search" placeholder="搜尋：UI、UX、CLI、Rules、Skill…" aria-label="搜尋名詞與關係"></div><div class="filter-row" role="group" aria-label="詞彙分類"><button class="filter-button active" data-filter="all" type="button">全部</button><button class="filter-button" data-filter="core" type="button">AI 核心</button><button class="filter-button" data-filter="code" type="button">開發與發布</button><button class="filter-button" data-filter="data" type="button">資料</button><button class="filter-button" data-filter="workflow" type="button">規則與流程</button><button class="filter-button" data-filter="design" type="button">介面與體驗</button><button class="filter-button" data-filter="safety" type="button">安全與驗證</button></div><p id="term-search-status" aria-live="polite"></p><div class="table-scroll"><table><caption>本次新增與整理的名詞分類</caption><thead><tr><th>名詞</th><th>主要分類</th><th>關聯</th></tr></thead><tbody><tr><td>UI 使用者介面</td><td>介面與體驗</td><td>包含 GUI、CLI 等操作形式</td></tr><tr><td>UX 使用者體驗</td><td>介面與體驗</td><td>涵蓋使用流程、回饋、可及性與整體感受</td></tr><tr><td>CLI 命令列介面</td><td>開發與發布</td><td>UI 的一種，以文字命令操作工具</td></tr><tr><td>Rules 規則</td><td>規則與流程</td><td>約定 AI 的行為與限制</td></tr><tr><td>Skill 技能</td><td>規則與流程</td><td>提供可重用的方法與資源</td></tr></tbody></table></div><p class="case-note"><strong>依用途分類：</strong>AI 核心＝模型、Agent 與分工；資料＝提示詞、上下文與資料處理；開發與發布＝網站實作、CLI、版本與交付；介面與體驗＝UI、UX 與互動設計；規則與流程＝Rules、Skill 與任務交代；安全與驗證＝測試、紀錄、權限與人工覆核。同一組涉及多種用途時，可出現在多個分類。</p><p class="map-legend"><strong>讀圖方式：</strong>包含＝分類；使用＝組合；箭頭＝資料或任務方向。Rules 是行為準則，Skill 是可重用方法，Prompt 交代本次任務；Tool 提供操作能力，MCP 是連接協定。</p><details class="term-group" data-term="AI ML Deep Learning Transformer LLM Token Attention Training Inference" data-category="core" id="terms-model"><summary>AI 與模型｜包含與架構的關係</summary><div class="term-group-content">
+<figure class="relation-map"><div class="nested">AI 人工智慧 <small>讓電腦完成辨識、預測、生成等任務</small><div class="nested">ML 機器學習 <small>從資料學習規律，是 AI 的一類方法</small><div class="nested">Deep Learning 深度學習 <small>以多層神經網路學習表示</small><div class="node">許多現代 LLM 大型語言模型<br><small>常採用 Transformer 架構</small></div></div></div></div><figcaption>這是常見 LLM 的定位示意。AI 也包含規則式系統；生成式 AI 還包括影像、音訊等，不只 LLM。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/model-20260930.jpg" alt="AI 包含機器學習、深度學習與常見 LLM；訓練調整參數，推論處理新輸入。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>AI 分類與訓練／推論</strong> · 圖中的包含關係用於定位許多現代 LLM，不代表所有 AI 都採用神經網路。 · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>Transformer、LLM、聊天介面有何不同？</h4><p>Transformer 是神經網路架構；LLM 是大型語言模型；聊天介面是讓人使用模型的產品介面。架構、模型、產品是不同層次。模型能寫出程式，不表示它已執行並驗證程式。</p></article><article class="term-explanation"><h4>訓練 Training 與推論 Inference</h4><p>訓練會透過資料調整模型參數；推論是用已訓練的模型處理新輸入。醫師貼一段虛構病例請模型整理，是推論；把文件交給聊天工具，不代表當場重新訓練了模型。</p></article><article class="term-explanation"><h4>Token 與 Attention</h4><p>Token 是模型處理的片段，不固定等於一個中文字或英文單字。Attention 讓不同位置的資訊彼此參照；流暢輸出仍可能包含錯誤，不能當成事實查證。</p></article></div>
+<p class="case-note">教學者的應用：先理解模型能產生草稿，再由自己核對內容與教學目標。無須先學會注意力公式才能開始寫程式。</p><div class="concept-grid"></div></div></details>
+<details class="term-group" data-term="Agent Harness Skill Tool MCP API" data-category="core code safety" id="terms-agent"><summary>Agent 與工具｜誰執行、誰管理、怎麼連接</summary><div class="term-group-content">
+<figure class="relation-map"><div class="frame"><b>Harness：管理上下文、工具權限、執行紀錄與停止條件</b><div class="relationship"><div class="node">Agent<br><small>規劃 → 行動 → 觀察 → 調整</small></div><span class="connector">使用</span><div class="node">Model 模型<br><small>理解需求、產生下一步</small></div></div><div class="concept-grid"><div class="node">Skills<br><small>提供可重用流程與資源</small></div><div class="node">Tools 工具<br><small>讀檔、測試、搜尋等實際操作</small></div><div class="node">MCP<br><small>連接工具與資料的一種標準協定</small></div></div></div><figcaption>Harness 是常用架構概念，產品邊界可能不同。Agent 可以直接呼叫工具，也可以經由 MCP 連接；工具背後可能再呼叫 API。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/agent-20260930.jpg" alt="Harness 管理執行，Model 提供能力，Skills 提供流程；工具可經 MCP 連接 API。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>Agent 與模型、流程、工具</strong> · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>Prompt 與 Skill：一次交代，還是重複使用？</h4><p>Prompt 描述這次任務。Skill 把重複工作整理成指令與資源，例如「先核對題目來源，再分開保存官方答案與 AI 解析」。Skill 可包含 SKILL.md、腳本及範本；各產品支援方式需確認。</p></article><article class="term-explanation"><h4>MCP 與 API：兩者可以一起用</h4><p>API 是程式功能的介面；MCP 是 AI 應用與外部工具、資料互通的標準協定。例如 Agent 經 MCP 使用擷取工具，工具再呼叫 Firecrawl API。加入 MCP 不會自動取得所有權限。</p></article><article class="term-explanation"><h4>Sandbox 與 Harness</h4><p>Sandbox 限制可接觸的環境；Harness 涵蓋更廣的執行管理。Agent 在允許的範圍內仍可能改檔、跑命令或連網。先看目前工作區與工具權限，才知道影響範圍。</p></article></div>
+<p class="case-note">教官的應用：Agent 建立 AED 模擬介面；Skill 提供固定教材流程；瀏覽器工具測試按鈕；Harness 留下測試與修改紀錄。醫療步驟仍以核准教材為依據。</p><p class="source-note">Rules 與 Skill 的完整對照、同一題庫案例與權限限制，見下方「規則與流程」組。</p><div class="concept-grid"></div></div></details>
+<details class="term-group" data-term="Rules Rule 規則 行為準則 Skill Skills 技能 工作流程 SOP Prompt 提示詞" data-category="workflow core safety" id="terms-rules-skill"><summary>規則與流程｜Rules 設定行為準則，Skill 提供可重用方法</summary><div class="term-group-content">
+<div class="concept-grid">
+<article class="term-explanation" id="term-rules"><h4>Rules｜規則與行為準則</h4><p>交代 AI 在適用範圍內應遵守的做法、限制與偏好。例如「使用繁體中文」「只使用虛構資料」「未核准不得改動題目答案」。適用範圍可能是個人、專案或特定檔案，依產品設定決定，不代表寫下就永遠生效。</p><p><strong>分類：</strong>規則與流程 → 協作準則。重點是「這個範圍內，做事要遵守什麼？」</p><p><strong>醫療救護例子：</strong>題庫專案的 Rules 指定保留來源、區分核准答案與 AI 解析，公開前由教學者確認授權與內容。</p></article>
+<article class="term-explanation" id="term-skill"><h4>Skill／Skills｜可重用技能與工作方法</h4><p>把一類任務的操作方法、檢查步驟與所需資源整理成可重用單元，可包含指令文件、範本、腳本及參考資料。由使用者選用，或依工具支援方式在合適任務中載入；不保證安裝後自動執行，也不等於模型重新受訓。</p><p><strong>分類：</strong>規則與流程 → 任務方法與資源。重點是「遇到這類任務，如何有步驟地完成？」</p><p><strong>醫療救護例子：</strong>「題庫匯入 Skill」依序檢查來源、整理題幹與選項、標示缺漏、保留核准答案，再輸出指定格式；來源或答案不確定時交由人確認。</p></article>
+<article class="term-explanation"><h4>Prompt｜這一次的任務交代</h4><p>描述這次要完成什麼、輸入在哪裡、輸出格式與驗收條件。可以要求依照適用 Rules，並選用相關 Skill，但不是每次都要重貼整套工作方法。</p><p><strong>同一案例：</strong>「請把這三題虛構練習題整理成核准的 JSON 格式，先列出計畫與缺漏，暫不修改檔案。」</p></article>
+</div>
+<div class="table-scroll"><table><caption>Rules 與 Skill 的差異</caption><thead><tr><th scope="col">比較面向</th><th scope="col">Rules</th><th scope="col">Skill</th></tr></thead><tbody>
+<tr><th scope="row">主要用途</th><td>約定行為、限制與偏好</td><td>提供完成某類任務的方法與資源</td></tr>
+<tr><th scope="row">常見內容</th><td>資料限制、書寫格式、需人工核准的事項</td><td>步驟、檢查清單、範本、腳本、參考文件</td></tr>
+<tr><th scope="row">何時適用</th><td>依設定的範圍、條件與載入方式</td><td>該技能被選用或符合工具的觸發條件時</td></tr>
+<tr><th scope="row">題庫例子</th><td>不得自行修改核准答案</td><td>如何轉換題庫格式、檢查缺題與重複題</td></tr>
+<tr><th scope="row">共同限制</th><td colspan="2">都是協作指引，不能保證 AI 正確，也不會自動授予工具權限。醫療內容仍需專業覆核。</td></tr>
+</tbody></table></div>
+<figure class="relation-map"><div class="node">Prompt：這次要整理三題虛構題目</div><div class="branch-label">Agent 先確認適用規則與方法</div><div class="concept-grid"><div class="node">Rules<br><small>保留來源、答案不得擅改、發布前人工核准</small></div><div class="node">Skill<br><small>依步驟匯入、檢查缺漏、輸出 JSON</small></div><div class="node">Tools<br><small>在允許範圍內讀檔、轉換與測試</small></div></div><figcaption>Harness 管理載入的上下文、工具與執行；實際檔案、網路與命令限制還要靠權限及 Sandbox。規則文字不能代替技術限制。</figcaption></figure>
+<p class="case-note"><strong>怎麼選？</strong>經常要遵守的協作準則放 Rules；反覆出現的任務方法整理成 Skill；這次的目標與素材寫在 Prompt。兩者可以重疊，Skill 內也能有任務專用規則；不必為了使用 Rules 就先建立 Skill。實際檔名、載入優先順序與支援格式依使用工具而異。</p>
+<p class="source-note">本節比較通用概念，不代表某產品的固定設定路徑。載入第三方 Skill 前，先閱讀內容、確認來源與檔案／網路操作，使用假資料及最低必要權限測試。</p>
+</div></details>
 
-        <div id="glossary" class="glossary-block">
-          <div class="callout"><strong>想把名詞串起來？</strong>到 <a href="knowledge-map.html">知識地圖</a>，看 AI／Agent／Skills／MCP、API／資料庫、版本／部署與 App 之間的關係；每一區都可展開閱讀醫療救護例子。</div>
-          <div class="glossary-head"><div><p class="eyebrow">遇到陌生詞先查這裡</p><h3>AI Agent 專有名詞</h3></div><input id="glossarySearch" type="search" placeholder="搜尋：Harness、Git、RAG…" aria-label="搜尋專有名詞"></div>
-          <div class="filter-row" role="group" aria-label="詞彙分類">
-            <button class="filter-button active" data-filter="all" type="button">全部</button>
-            <button class="filter-button" data-filter="core" type="button">核心</button>
-            <button class="filter-button" data-filter="code" type="button">程式</button>
-            <button class="filter-button" data-filter="data" type="button">資料</button>
-            <button class="filter-button" data-filter="safety" type="button">安全</button>
-          </div>
-          <div class="glossary-grid">
-            <details data-term="Docker 容器 Container Image 映像檔 Dockerfile" data-category="code"><summary>Docker／Container／Image</summary><p>Docker 管理容器執行環境。Image 是程式與依賴的打包範本，Container 是執行中的環境。Dockerfile 描述建置步驟。<a href="docker-compose-firecrawl.html#unit-2">看訓練箱比喻與名詞對照</a>。</p></details>
-            <details data-term="Docker Compose compose.yaml YAML 服務 Volume Port" data-category="code data"><summary>Docker Compose</summary><p>用 compose.yaml 定義服務、網路與儲存，再用 docker compose 指令啟停。Docker Desktop 已包含 Compose。<a href="docker-compose-firecrawl.html#unit-3">動手啟動本機網站</a>。</p></details>
-            <details data-term="Firecrawl 爬蟲 網頁擷取 Search Scrape Crawl Map" data-category="data"><summary>Firecrawl</summary><p>搜尋或擷取公開網頁，整理成 Markdown 等資料供人與 AI 使用。內容完整性、授權與官方答案需人工核對。<a href="docker-compose-firecrawl.html#unit-4">看單頁擷取練習</a>。</p></details>
-            <details data-term="LLM Model 大型語言模型 大腦" data-category="core"><summary>LLM／Model</summary><p>理解與產生文字、程式或多媒體內容的模型。提供能力，不等於完整工作流程。</p></details>
-            <details data-term="Agent 代理 行動 工具" data-category="core"><summary>Agent</summary><p>在目標下規劃步驟、使用工具、觀察結果並持續修正的系統角色。</p></details>
-            <details data-term="Harness 框架 執行層 權限 Log 測試" data-category="core safety"><summary>Harness</summary><p>包圍 Agent 的執行與控制層，負責 Context、工具、權限、記憶、測試、Log、停止、回復與完成判定。</p></details>
-            <details data-term="Context 脈絡 上下文 工作區" data-category="core"><summary>Context</summary><p>Agent 目前看得到的需求、檔案、對話、規則與工具結果。重要決定應寫入 Markdown，不只留在長對話裡。</p></details>
-            <details data-term="Token 額度 文字單位" data-category="core"><summary>Token</summary><p>模型處理文字的計量單位。重複貼大量資料會增加成本並稀釋重點。</p></details>
-            <details data-term="Prompt 提示詞 指令" data-category="core"><summary>Prompt</summary><p>交給模型的任務說明。好 Prompt 應寫清楚使用者、輸入、輸出、限制與完成條件。</p></details>
-            <details data-term="Markdown md README SPEC" data-category="code"><summary>Markdown／.md</summary><p>人與 Agent 都容易閱讀的純文字格式，適合保存 SPEC、README、安全規則與交接紀錄。</p></details>
-            <details data-term="Git Repository Repo Commit 版本" data-category="code"><summary>Git／Repository／Commit</summary><p>Git 保存版本；Repository 是專案版本庫；Commit 是一次可追蹤、可回復的變更紀錄。</p></details>
-            <details data-term="PR Pull Request 程式碼審查 合併" data-category="code"><summary>PR／Pull Request</summary><p>提出「請檢查這些變更，再決定要不要合併」的協作請求。個人網站發布不一定需要 PR；多人協作時可讓同伴先審查。</p></details>
-            <details data-term="API 串接 介面" data-category="code data"><summary>API</summary><p>讓兩套系統以明確格式交換資料的介面。串接前要確認驗證、權限、錯誤處理與費用。</p></details>
-            <details data-term="SQL 資料庫 查詢 SELECT UPDATE" data-category="data code"><summary>SQL</summary><p>查詢與更新關聯式資料庫的語言。耗材管理先想清楚品項、數量、異動與權限；真正連資料庫時再學 SELECT、條件查詢與安全更新。</p></details>
-            <details data-term="MCP Model Context Protocol 工具" data-category="code"><summary>MCP</summary><p>讓 AI 應用以一致方式連接工具與資料來源的協定；安裝前仍要審查可讀寫範圍。</p></details>
-            <details data-term="RAG 檢索 增強 生成 向量搜尋" data-category="data"><summary>RAG</summary><p>先從核准資料找依據，再交給模型整理回答；來源品質與引用仍需人工確認。</p></details>
-            <details data-term="Database 資料庫 Sheet 試算表" data-category="data"><summary>Database／資料庫</summary><p>保存結構化資料與異動紀錄。課堂原型先用 CSV 或試算表，正式使用才評估帳號、權限、備份與稽核。</p></details>
-            <details data-term="Log 紀錄 軌跡 Audit" data-category="data safety"><summary>Log</summary><p>記錄輸入、操作時間、結果與錯誤，讓問題可以重現、追查和改善。</p></details>
-            <details data-term="Sandbox 沙箱 隔離" data-category="safety"><summary>Sandbox</summary><p>限制程式或 Agent 能接觸的檔案、命令與網路範圍，降低錯誤的影響半徑。</p></details>
-            <details data-term="Human in the Loop HITL 人工核准" data-category="safety"><summary>Human in the Loop</summary><p>在人機流程中預先設計必須由人檢查或批准的節點，不是出事後才補簽名。</p></details>
-          </div>
-        </div>
-      </section>
+<details class="term-group" data-term="Context Prompt RAG Embedding Token Markdown SPEC README" data-category="core data" id="terms-context"><summary>提示詞與資料｜資訊如何進入模型</summary><div class="term-group-content">
+<figure class="relation-map"><div class="relationship"><div class="node">核准文件庫</div><span class="connector">檢索相關片段 →</span><div class="node">Context 本次上下文<br><small>需求＋對話＋檔案片段＋工具結果</small></div><span class="connector">供模型生成 →</span><div class="node">回答＋來源</div></div><figcaption>這是一種 RAG 流程；檢索可用關鍵字、向量或混合方式，不是每次 AI 回答都會使用 RAG。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/context-20260930.jpg" alt="核准文件經檢索進入 Context；Memory 需取回相關內容；模型依上下文生成回答。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>資料如何進入模型</strong> · AI 生成概念示意，請搭配本節定義閱讀。圖中分詞與編號為概念示意，依模型可能不同。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>Context 與 Memory</h4><p>Context 是當下送給模型的工作資料。Memory 是跨次保存的資訊機制，例如偏好或專案紀錄；要被取回、加入本次上下文，模型才可能使用。把重要決定寫進 README 或 SPEC.md，比假設聊天永遠記得更可靠。</p></article><article class="term-explanation"><h4>Embedding 與向量資料庫</h4><p>Embedding 把文字等資料表示成數字向量，方便比較相似性；向量資料庫可保存並搜尋這些向量。相似不代表正確，也不代表文件版本有效。小型題庫可以先用主題標籤或關鍵字搜尋。</p></article><article class="term-explanation"><h4>Firecrawl、RAG 與訓練</h4><p>Firecrawl 取得網頁內容；RAG 在回答時取用資料；模型訓練調整參數。三者做的事不同。取得官方網頁後，仍要核對日期、擷取缺漏與適用範圍。</p></article><article class="term-explanation"><h4>Token、上下文容量、額度與帳單</h4><p>Token 是處理單位；上下文容量是一次能容納的範圍；使用額度與帳單是產品的計量規則。縮短或清空對話不會退回已消耗額度。省用量可先限定檔案與問題，保留必要錯誤證據和測試。</p></article></div>
+<p class="case-note">醫師的應用：針對虛構病例，從核准教學文件找相關段落，再比較自己的推理與 AI 草稿；保留來源，回查原文。</p><div class="concept-grid"></div></div></details>
+<details class="term-group" data-term="Frontend Backend API HTTP JSON SQL Database CRUD Firecrawl Cache Redis Storage" data-category="code data" id="terms-web"><summary>網站與資料｜畫面、後端與儲存怎麼配合</summary><div class="term-group-content">
+<figure class="relation-map"><div class="relationship"><div class="node">前端<br><small>HTML 結構／CSS 樣式／JavaScript 互動</small></div><span class="connector">HTTP 請求 →<br>← 回應，常用 JSON</span><div class="node">後端 API<br><small>驗證身分、權限與數量規則</small></div><span class="connector">讀寫 ↔</span><div class="node">資料庫<br><small>關聯式資料庫常用 SQL</small></div></div><p class="map-caption">後端也可依需求連接 LINE、AI 或其他服務；這些是分支，不必先通過資料庫。純靜態練習可以只有前端。</p></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/web-20260930.jpg" alt="虛構耗材領用經前端、後端 API 與資料庫；HTTP 傳請求回應，JSON 是格式，SQL 操作資料。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>一筆耗材領用的資料流</strong> · 全端延伸架構；本課靜態原型未建立後端、資料庫或 LINE 通知。 · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>API、HTTP、JSON 各負責什麼？</h4><p>API 定義可用功能；HTTP 是常見網路溝通協定；JSON 是常見資料格式。JSON 不是資料庫，也不是所有 API 都必須使用它。</p><p>耗材例子：GET 讀取品項；POST 提交領用。伺服器回傳結果，畫面再更新。HTTP 狀態碼 200 常表示成功、400 表示請求問題、401 表示缺少有效驗證、403 表示拒絕存取、500 表示伺服器錯誤。</p></article><article class="term-explanation"><h4>資料庫與 SQL</h4><p>資料庫保存資料；SQL 是操作關聯式資料庫的語言。先分清「品項表」與「領用異動表」，再考慮查詢語法。例如 SELECT 查詢、WHERE 篩選、JOIN 連接資料、GROUP BY 彙整。</p><p>多人同時領用時，需要讓檢查與扣庫存一致完成，通常涉及交易 Transaction。只在畫面上減數字，不能解決多人同步。</p></article><article class="term-explanation"><h4>localStorage、試算表與正式資料庫</h4><p>localStorage 保存在目前瀏覽器與網站來源下，不是跨裝置同步。試算表方便整理，但多人寫入、權限、稽核和一致性需另外設計。資料庫也不會自動讓系統安全，仍需設定存取與備份。</p></article><article class="term-explanation"><h4>登入、授權、快取與檔案儲存</h4><p>Authentication 確認「你是誰」；Authorization 決定「你能做什麼」。Cache 快取常保存可重用結果；Object Storage 適合圖片、影片等檔案。這些服務依需求加入，不是初版的必備配備。</p></article></div>
+<p class="case-note">醫護人員的應用：介面接收領用數量；後端確認權限與庫存；資料庫保存異動。學員應能說明資料存在哪裡，以及重整畫面後會不會保留。</p><p class="case-note">想把名詞變成操作？閱讀 React × Apps Script × Sheets 的全端架設流程，依序驗證畫面、後端、資料與發布。本頁仍是概念圖，不代表已建好這套後端。</p><div class="concept-grid"><article class="term-explanation"><h4>Firecrawl</h4><p>搜尋或擷取公開網頁，整理成 Markdown 等資料供人與 AI 使用。內容完整性、授權與官方答案需人工核對。看單頁擷取練習。</p></article><article class="term-explanation"><h4>SQL</h4><p>查詢與更新關聯式資料庫的語言。耗材管理先想清楚品項、數量、異動與權限；真正連資料庫時再學 SELECT、條件查詢與安全更新。</p></article></div></div></details>
+<details class="term-group" data-term="CLI Command-Line Interface 命令列介面 終端機 Shell Terminal Python Node.js pip npm Git GitHub PR Branch Commit Merge" data-category="code design" id="terms-development"><summary>開發與版本｜從檔案到可追蹤的變更</summary><div class="term-group-content">
+<figure class="relation-map"><div class="relationship"><div class="node">編輯器／Agent<br><small>修改專案檔案</small></div><span class="connector">執行與檢查 →</span><div class="node">執行環境<br><small>瀏覽器、Node.js 或 Python</small></div><span class="connector">通過後留版本 →</span><div class="node">Git commit</div><span class="connector">push →</span><div class="node">GitHub 遠端庫</div></div><figcaption>PR 是提議合併變更的審查流程，可搭配分支使用；Push 到 GitHub 不代表網站已部署。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/development-20260930.jpg" alt="編輯器修改檔案、終端機輸入命令；確認可用後選擇檔案、Commit、Push 至 GitHub。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>開發工具與版本管理</strong> · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation" id="term-cli"><h4>CLI｜命令列介面</h4><p><strong>Command-Line Interface</strong>：透過輸入文字命令來操作程式的介面，例如查詢版本、啟動專案或執行測試。CLI 是操作方式，不是某一個特定軟體，也不是 AI 模型。</p><p><strong>練習例子：</strong>在終端機輸入 <code>git status</code>，查看練習專案有哪些檔案改動；需先安裝 Git 並位於版本庫中。使用 CLI 不必背完所有命令，先理解指令用途與目前所在資料夾。</p><p><strong>分類：</strong>開發與發布 → 工具操作介面。CLI 也是使用者介面的一種，與圖形介面的按鈕操作方式不同。</p></article><article class="term-explanation"><h4>終端機與 Shell</h4><p>終端機提供文字輸入與輸出的視窗；Shell（命令殼層）解讀命令並啟動程式，例如 zsh 或 Bash；CLI 則是工具提供的文字命令操作介面。三者常一起使用，但不是同義詞。</p></article><article class="term-explanation"><h4>Python、Node.js、pip、npm</h4><p>Python 可執行 Python 程式；Node.js 讓 JavaScript 在瀏覽器之外執行；pip 與 npm 常用來管理各自生態的套件。純 HTML/CSS/JavaScript 網站可以直接用瀏覽器，不需要為了「使用 AI」全部安裝。</p></article><article class="term-explanation"><h4>Git 與 GitHub</h4><p>Git 是版本控制工具，Commit 記錄本機版本；GitHub 是提供遠端版本庫與協作功能的平台。Branch 分支用於隔開工作；PR 提出審查；Merge 將變更合併。Pull 會取得並整合遠端變更，可能需要處理衝突。</p></article><article class="term-explanation"><h4>除錯與版本如何配合？</h4><p>先記錄可重現步驟與預期／實際差異，再找根因、做小修正、重跑測試並提交。不要把「AI 說修好了」當作測試證據；保留可回查的穩定版本。</p></article></div><p class="case-note">EMT 的應用：修改 AED 模擬按鈕前保留版本；修好連按造成的跳步後，重測正常操作和重新開始。</p><div class="concept-grid"><article class="term-explanation"><h4>Markdown／.md</h4><p>人與 Agent 都容易閱讀的純文字格式，適合保存 SPEC、README、安全規則與交接紀錄。</p></article></div></div></details>
+<details class="term-group" data-term="Docker Compose Container Image PWA App Capacitor Swift SwiftUI Domain DNS HTTPS CI/CD" data-category="code data" id="terms-delivery"><summary>發布與交付｜網站、容器與 App 是不同選項</summary><div class="term-group-content">
+<figure class="relation-map"><div class="node">同一個需求：讓學員在手機練習題目</div><div class="branch-label">依使用情境選擇交付方式 ↓</div><div class="concept-grid"><div class="node">響應式網站<br><small>瀏覽器開網址，適應不同螢幕</small></div><div class="node">PWA<br><small>Web 技術加上安裝、離線等設計</small></div><div class="node">封裝式／原生 App<br><small>平台專案、裝置功能與商店流程</small></div></div><figcaption>這些是選項，不是必須逐級升級的階梯；PWA 的功能依平台、瀏覽器與實作而異。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/delivery-20260930.jpg" alt="依需求選擇響應式網站、PWA 或 App；網域、代管、Docker 與 Compose 各自負責不同工作。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>作品的交付方式</strong> · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>Capacitor 與 Swift／SwiftUI</h4><p>Capacitor 可把 Web 專案帶進原生平台，並透過外掛使用裝置功能；Swift 是程式語言，SwiftUI 是 Apple 平台介面框架。封裝或原生 App 都需要平台測試與發布流程，不是改副檔名就能上架。</p></article><article class="term-explanation"><h4>Docker、Image、Container、Compose</h4><p>Image 是打包範本；Container 是依映像執行的環境；Compose 描述多服務如何配置。它們協助一致地執行程式，不能取代程式本身、資料庫設計或網站代管。進入 Docker 與 Firecrawl 補充。</p></article><article class="term-explanation"><h4>GitHub Pages、伺服器、網域與 HTTPS</h4><p>靜態代管供應 HTML、CSS、JavaScript；自訂後端需支援相應執行環境的服務。網域是名稱，DNS 幫忙解析名稱，HTTPS 保護傳輸。買了網域仍需要網站代管；上傳 compose.yaml 到 Pages 不會啟動容器。</p></article><article class="term-explanation"><h4>CI/CD、部署與維護</h4><p>CI 可自動檢查整合後的程式；CD 可協助交付或部署。成功建置不代表醫療內容已覆核。部署後還要用實際網址確認功能、圖片與手機操作，並保留更新和回復方式。</p></article></div><p class="case-note">教學者的應用：先分享可在手機開啟的題庫網站；確定有離線需求再設計 PWA，需要更深入裝置功能時再評估 App。</p><p class="source-note">參考：MDN：PWA、Capacitor 文件。</p><div class="concept-grid"></div></div></details>
+<details class="term-group" data-term="UI UX User Interface User Experience 使用者介面 使用者體驗 GUI 圖形介面 設計" data-category="design" id="terms-interface"><summary>介面與體驗｜UI 看操作介面，UX 看整體使用感受</summary><div class="term-group-content"><div class="concept-grid"><article class="term-explanation" id="term-ui"><h4>UI｜使用者介面</h4><p><strong>User Interface</strong>：人與系統互動的介面。在網站中，常見的 UI 包括按鈕、表單、文字、顏色、圖示與版面排列，不只是裝飾或美化。</p><p><strong>練習例子：</strong>耗材網站的「領用」按鈕是否夠大、數量欄位是否標出單位、錯誤文字是否清楚可讀。</p><p><strong>分類：</strong>介面與體驗 → 介面呈現與控制。GUI 是圖形使用者介面；CLI 是命令列介面，兩者都是 UI 的形式。</p></article><article class="term-explanation" id="term-ux"><h4>UX｜使用者體驗</h4><p><strong>User Experience</strong>：使用者在使用產品前、使用中與使用後的整體感受與經驗，包括是否容易理解、能否順利完成任務、等待與出錯時是否得到協助，以及是否信任結果。</p><p><strong>練習例子：</strong>學員能否順利選題、作答、看懂錯誤原因，再回到錯題複習；領用人員輸入錯誤數量後，能否保留已填資料並輕鬆修正。</p><p><strong>分類：</strong>介面與體驗 → 使用流程與整體感受。UX 不只等於操作步驟，也包含速度、可及性、回饋與使用情境。</p></article><article class="term-explanation"><h4>UI、UX、CLI 怎麼分？</h4><p><strong>UI</strong> 問「透過什麼介面操作？」；<strong>UX</strong> 問「整個任務是否好理解、好完成？」；<strong>CLI</strong> 是「用文字命令操作」的 UI 形式。漂亮的畫面不保證好用；命令列工具也需要清楚提示、合理預設與錯誤復原，才能有良好 UX。</p></article></div><p class="case-note">給 AI 的需求例子：「請把領用按鈕與數量單位標示清楚（UI）；送出前確認品項及數量，失敗時保留輸入並告訴我如何修正（UX）。」</p></div></details>
+<details class="term-group" data-term="UI UX QA Debug Test Log Analytics Sandbox HITL Human in the Loop" data-category="safety data code" id="terms-quality"><summary>設計與安全｜可用、可查、可控才算完成</summary><div class="term-group-content">
+<figure class="relation-map"><div class="relationship"><div class="node">使用情境<br><small>誰、在哪裡、做什麼</small></div><span class="connector">決定 →</span><div class="node">UX 操作流程<br><small>步驟、回饋、錯誤與復原</small></div><span class="connector">透過介面呈現 →</span><div class="node">UI 視覺與控制<br><small>字體、按鈕、顏色與排列</small></div></div><p class="map-caption">設計系統維持元件一致；測試與使用者回饋檢查這套設計是否真的可用。</p></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/quality_20261013_2235.png" alt="從使用情境到 UX、UI、測試回饋的循環；設計系統、Log 與 Analytics 各有角色。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>UI／UX 與品質循環</strong> · 教室內的介面練習，不是現場急救處置流程。 · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>怎麼把設計需求說給 AI？</h4><p>比「做漂亮一點」更具體的說法是：「使用者是操作訓練機的 EMT，手機直向使用；主要操作一步可見，按鈕有文字標籤，錯誤時說明原因與恢復方法。請先展示流程與畫面草圖。」</p></article><article class="term-explanation"><h4>QA、測試與 Debug</h4><p>QA 是維持品質的做法；測試提供實際行為的證據；Debug 找出並修正原因。用正常、錯誤、邊界與回歸案例測試，再由學員實際操作。自動測試通過與醫療內容正確，是不同的驗證工作。</p></article><article class="term-explanation"><h4>Log、Analytics 與回饋</h4><p>Log 協助追查事件；Analytics 彙整使用行為；回饋說明使用者的感受和困難。雷達圖能呈現練習面向，仍應顯示題數、來源和時間，不能用一次少量作答就斷言專業能力。</p></article></div><p class="case-note">教官的應用：觀察學員是否找得到「重新開始」；醫師／教學者再確認案例內容。介面方便與內容可信，都要各自驗證。</p><div class="concept-grid"><article class="term-explanation"><h4>Sandbox</h4><p>限制程式或 Agent 能接觸的檔案、命令與網路範圍，降低錯誤的影響半徑。</p></article><article class="term-explanation"><h4>Human in the Loop</h4><p>在人機流程中預先設計必須由人檢查或批准的節點，不是出事後才補簽名。</p></article></div></div></details>
+<details class="term-group" data-term="Workflow Agent Team Multi-Agent Subagent" data-category="core safety" id="terms-team"><summary>多 Agent｜分工、整合與人工驗收</summary><div class="term-group-content">
+<figure class="relation-map"><div class="node">人提出目標與完成條件</div><div class="branch-label">協調者拆分可獨立工作 ↓</div><div class="concept-grid"><div class="node">資料整理 Agent<br><small>回傳來源與缺漏</small></div><div class="node">開發 Agent<br><small>回傳檔案與操作方式</small></div><div class="node">測試 Agent<br><small>回傳測試與失敗證據</small></div></div><div class="branch-label">整合、處理衝突、共同驗證 ↓</div><div class="node">人確認成果適用性</div><figcaption>多 Agent 可並行也可依序工作；分工增加協調與成本，不保證更快或更準。</figcaption></figure>
+<figure class="ai-poster"><img src="assets/knowledge-posters/team-20260930.jpg" alt="人定義目標，協調者拆分給資料、開發、測試 Agent，整合後由人確認成果適用性。" width="1536" height="1024" loading="lazy" decoding="async"><figcaption><strong>多 Agent 分工與人工驗收</strong> · AI 生成概念示意，請搭配本節定義閱讀。</figcaption></figure>
+<div class="concept-grid"><article class="term-explanation"><h4>Workflow 與 Agent</h4><p>Workflow 偏向預先定義的步驟；Agent 可依觀察選擇下一步。實務上常混合使用，例如固定「取得資料 → 核對 → 匯入」流程，其中由 Agent 協助整理缺漏。</p></article><article class="term-explanation"><h4>什麼時候值得分工？</h4><p>工作可明確拆開、各自有輸入輸出與驗收方式時較適合，例如一個做題庫格式檢查，一個測試介面。只改一段文字通常不值得成立一個團隊。</p></article><article class="term-explanation"><h4>多一位 AI 審查就可靠了嗎？</h4><p>不同 Agent 仍可能共享同樣錯誤。審查要提出來源、測試和可重現證據；模型數量不能替代醫療專業覆核。</p></article></div><div class="concept-grid"></div></div></details><div class="callout"><strong>把名詞放回自己的作品：</strong>AI 協助開發，不代表成品必須呼叫 AI API。GitHub 保存程式碼，不代表使用者輸入已存進資料庫。測試通過，不代表醫療內容已被專業覆核。</div></div></section>
 
-      <section class="section alt" id="workspace"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-3">Project、SPEC.md 與計畫審核</a>。完成後回到本節。</aside>
+<section class="section alt" id="workspace"><aside class="learning-gate"><strong>在本頁繼續：</strong>用 Antigravity 開啟專屬練習資料夾，先讀 SPEC.md、列計畫與測試，人工核准後才修改。不選整個桌面或院內資料夾。</aside>
 <aside class="learning-gate"><strong>先定義成功。</strong>寫出核心流程、禁止事項、一個正常案例與一個失敗案例。先看<a href="#test">測試方法</a>，此時只寫預期結果，不必先做出程式。</aside>
         <div class="section-heading"><span class="section-number">05</span><div><p class="eyebrow">先建立安全工作桌，再開始對話</p><h2>專案資料夾與 SPEC.md</h2></div></div>
-        <figure class="lesson-image compact"><img src="assets/03-workspace.png" alt="專案資料夾、Markdown 與 Token 示意"></figure>
+
         <div class="two-column code-layout">
           <div>
             <h3>建議資料夾</h3>
@@ -303,7 +311,7 @@
         </div>
       </section>
 
-      <section class="section" id="first-run"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-3">開啟 Antigravity 專案與核心流程教學</a>。完成後回到本節。</aside>
+      <section class="section" id="first-run"><aside class="learning-gate"><strong>在本頁繼續：</strong>用 Antigravity 開啟專屬練習資料夾，先讀 SPEC.md、列計畫與測試，人工核准後才修改。不選整個桌面或院內資料夾。</aside>
 <aside class="learning-gate"><strong>實作一：</strong>確認計畫 → 建立最小版本 → 測試。只做一條流程；本機可用後保留穩定版。安裝或除錯卡住，就縮小需求或改用同組可用電腦。</aside>
         <div class="section-heading"><span class="section-number">06</span><div><p class="eyebrow">先規劃，再允許修改</p><h2>第一次把任務交給 Agent</h2></div></div>
         <div class="steps">
@@ -326,10 +334,10 @@
 除非我另行確認。</code></pre></div>
       </section>
 
-      <section class="section" id="test"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-6">用 Antigravity 重現問題與進行最小修正</a>。完成後回到本節。</aside>
+      <section class="section" id="test"><aside class="learning-gate"><strong>除錯順序：</strong>提供重現步驟、預期與實際結果 → 檢查原因 → 核准最小修正 → 重跑測試。無法執行的測試應明示未執行。</aside>
 <aside class="learning-gate"><strong>實作二：</strong>存檔、找一個問題、修正後回歸測試。不新接登入、正式資料庫或外部 API。</aside>
         <div class="section-heading"><span class="section-number">07</span><div><p class="eyebrow">測試不是展示成功，而是刻意製造失敗</p><h2>完成最小版本，再小步迭代</h2></div></div>
-        <figure class="lesson-image compact"><img src="assets/05-mvp.png" alt="Plan Files Run Test 的最小版本流程"></figure>
+        <figure class="lesson-image compact"><img src="assets/practice-workflow_20261013_2235.png" alt="定義需求、人工核准、建立原型與測試改良的四步驟；只用虛構資料"></figure>
         <div class="test-grid">
           <article><h3>正常測試</h3><p>一筆完整、格式正確的資料，能走完核心流程。</p></article>
           <article><h3>錯誤測試</h3><p>空白、負數、錯誤格式、重複資料或不存在的檔案。</p></article>
@@ -349,12 +357,12 @@
 修正後重跑原本成功的測試與這次失敗案例。</code></pre></div>
       </section>
 
-      <section class="section alt" id="security"><aside class="learning-gate"><strong>Antigravity 主路線：</strong><a href="antigravity.html#ag-4">分清計畫審核、工具權限與 sandbox</a>。完成後回到本節。</aside>
+      <section class="section alt" id="security"><aside class="learning-gate"><strong>兩道檢查：</strong>同意計畫不等於授予全部工具權限。確認檔案、命令與網路範圍；安裝、刪檔、外傳與發布另外核准。</aside>
 <aside class="learning-gate"><strong>發布前的關卡。</strong>畫出本次實際資料流；以下 LINE／API／資料庫圖是未來架構，不是本堂必做。localStorage 只在本機瀏覽器保存，不會同步給其他學員。未通過檢查就不公開。</aside>
         <div class="section-heading"><span class="section-number">08</span><div><p class="eyebrow">能做不代表能公開</p><h2>資料流、資安與醫療內容覆核</h2></div></div>
         <div class="image-pair">
-          <figure class="lesson-image compact"><img src="assets/07-dataflow.png" alt="LINE、Webhook、API、試算表、資料庫與 AI 資料流"></figure>
-          <figure class="lesson-image compact"><img src="assets/08-security.png" alt="個資、外部傳輸、供應鏈、輸出驗證、過度代理與醫療覆核六道防線"></figure>
+
+
         </div>
         <figure class="learning-diagram" aria-labelledby="data-diagram-title"><h3 id="data-diagram-title">圖解｜什麼時候才需要 API 與資料庫？</h3><p>只在自己的瀏覽器練習，可先用靜態網頁與假資料；多人同步、登入或 LINE 通知才需要另外設計服務。</p><ol class="diagram-track" style="--diagram-count:4"><li><b>① 使用者畫面</b><span>EMT 或醫護人員在手機輸入練習資料；畫面不應存放秘密金鑰。</span></li><li><b>② API／後端</b><span>檢查身分、權限、格式與業務規則，再決定是否寫入。</span></li><li><b>③ 資料庫</b><span>保存品項、異動紀錄與時間；需備份、稽核與存取控管。</span></li><li class="gate"><b>④ 外部服務</b><span>LINE 或 AI 串接屬選配；先確認資料會送去哪裡及費用。</span></li></ol><div class="diagram-note">資料流是設計基線，不是每個專案必須有四層。真實病人、勤務及人員資料不得直接帶入課堂原型。</div></figure>
         <div class="risk-table" role="table" aria-label="權限紅黃綠燈">
@@ -369,7 +377,7 @@
       <section class="section" id="publish">
 <aside class="learning-gate"><strong>全班統一先走 GitHub Pages。</strong>其他代管為課後選項。沒有安全核准不發布；遇到帳號或部署延遲，先交本機可用版本與待辦，不跳過驗收。</aside>
         <div class="section-heading"><span class="section-number">09</span><div><p class="eyebrow">先發布沒有敏感資料的靜態網站</p><h2>把完成檔案放到免費網址</h2></div></div>
-        <figure class="lesson-image compact"><img src="assets/06-publish.png" alt="本機、版本庫、公開頁面與正式系統的成熟度"></figure>
+
         <figure class="learning-diagram" aria-labelledby="git-diagram-title"><h3 id="git-diagram-title">圖解｜Git 記版本，GitHub 放遠端，PR 供協作審查</h3><p>先確認檔案與秘密資料，再選擇上傳方式；首次上課可直接用 GitHub 網頁上傳。</p><ol class="diagram-track" style="--diagram-count:5"><li><b>① 本機修改</b><span>完成網站並用 <code>git status</code> 看改了什麼。</span></li><li class="gate"><b>② 選擇檔案</b><span>確認沒有病人資料、密碼、<code>.env</code>；再逐項加入。</span></li><li><b>③ Commit</b><span>把核准變更記成可追蹤版本。</span></li><li><b>④ Push</b><span>把版本送到 GitHub；公開庫裡的檔案可被看見。</span></li><li><b>⑤ PR（選用）</b><span>多人協作時請同伴審查後合併；個人 Pages 不必先做 PR。</span></li></ol><figcaption>Git 與 GitHub 不相同；PR 也不是「一鍵部署」。參考 <a href="https://docs.github.com/en/pull-requests/get-started/about-pull-requests" target="_blank" rel="noopener">GitHub 官方 PR 說明 ↗</a>。</figcaption></figure>
         <aside class="warning-card publish-warning"><span class="warning-icon">!</span><div><h3>公開前先理解</h3><p>免費服務提供的通常是 <code>github.io</code>、<code>netlify.app</code>、<code>pages.dev</code> 或 <code>vercel.app</code> 子網域。自己的 <code>.com</code>／<code>.tw</code> 通常需要另外購買。任何公開網址都不得包含病人資料、帳密或 API Key。</p></div></aside>
 
@@ -413,7 +421,7 @@
       <section class="section alt" id="feedback">
 <aside class="learning-gate"><strong>回饋與展示：</strong>收一筆匿名回饋、寫一項改善；展示痛點、功能與失敗防護。</aside>
         <div class="section-heading"><span class="section-number">10</span><div><p class="eyebrow">不要只問喜不喜歡</p><h2>用 Log 與回饋改善下一版</h2></div></div>
-        <figure class="lesson-image compact"><img src="assets/ppt-quiz-feedback.png" alt="即時作答、遊戲互動與配對題的學習回饋形式" loading="lazy"><figcaption>互動方式可移植到 EMS 教學；圖中的一般知識題只是介面示例，正式練習題仍由講師核准。</figcaption></figure>
+        <figure class="lesson-image compact"><img src="assets/ppt-quiz-feedback.png" alt="即時作答、遊戲互動與配對題的學習回饋形式" loading="lazy"><figcaption>與新版簡報互動教學主題對照的介面示意；圖中的一般知識題只是介面示例，正式練習題仍由講師核准。</figcaption></figure>
         <div class="metric-grid">
           <article><strong>完成率</strong><span>是否完成核心流程</span></article>
           <article><strong>任務時間</strong><span>從開始到成功多久</span></article>
@@ -431,7 +439,7 @@
         <article class="callout fullstack-entry"><h3>從本機原型到輕量全端：React × Apps Script × Sheets</h3><p>跟著 12 個步驟，先定義需求與資料欄位，再驗證後端、串接前端、測試與發布。以虛構題庫帶入，補充環境變數、權限、重複提交與多人資料問題。</p><p><a class="primary-button" href="fullstack-lab.html">依序學習全端架設</a>　<a href="downloads/全端架設操作流程_20261013_1754.md" download>下載操作流程 .md</a></p><p>現有學習站保持純靜態；React 建置工作流只用於另開的練習專案。沒有資料庫需求時，不必升級架構。</p></article>
         <p>想把同一版訓練網站交給各組，或把核准網頁整理成題庫草稿？先分清執行環境、服務配置與資料取得這三件事。</p>
         <div class="concept-grid">
-          <article><h3>Docker：統一執行環境</h3><p>像一套規格一致的訓練箱。Image 是打包範本，Container 是正在執行的環境。</p><a href="docker-compose-firecrawl.html#unit-2">認識 Docker 名詞</a></article>
+          <article><h3>Docker：統一執行環境</h3><p>像一套規格一致的訓練箱。Image 是打包範本，Container 是正在執行的環境。</p><a href="#terms-delivery">認識 Docker 名詞</a></article>
           <article><h3>Compose：管理整組服務</h3><p>用一份 compose.yaml 管理網站、API 與資料庫；入門先練習一個網站的啟動、Log 與停止。</p><a href="docker-compose-firecrawl.html#unit-3">安裝與本機操作</a></article>
           <article><h3>Firecrawl：整理網頁來源</h3><p>先找候選頁，取得允許使用的單頁內容，再核對來源、日期、缺漏與答案。</p><a href="docker-compose-firecrawl.html#unit-4">題庫來源整理練習</a></article>
         </div>
@@ -443,8 +451,8 @@
 <aside class="learning-gate"><strong>課後選讀。</strong>本區臨床教育框架來自使用者提供的演講整理筆記；本次未獨立核驗講者歸屬或官方標準，不據此做高風險能力判定。</aside>
         <div class="section-heading"><span class="section-number">12</span><div><p class="eyebrow">先建立人的能力，再讓 AI 協作</p><h2>臨床推理與 3D 解剖延伸</h2></div></div>
         <div class="image-pair">
-          <figure class="lesson-image compact"><img src="assets/09-reasoning.png" alt="Think、Commit、Ask AI、Review 的臨床推理流程"><figcaption>先留下自己的推理，再與 AI 比較、查證與調和。</figcaption></figure>
-          <figure class="lesson-image compact"><img src="assets/10-anatomy.png" alt="Z-Anatomy、Open Anatomy 與 AnatomyTOOL 三種開放 3D 解剖資源"><figcaption>選資源以前先定義教學任務，並逐項核對授權。</figcaption></figure>
+
+
         </div>
         <div class="callout"><strong>推理口訣：</strong>Think → Commit → Ask AI → Compare → Verify → Reconcile → Decide → Reflect。</div>
         <aside class="role-lens"><span data-role-slot="label">醫護人員視角</span><p data-role-slot="reasoning">先寫下自己的觀察、優先問題與需要回報的紅旗，再讓 AI 協助整理；AI 不取代臨床評估與通報責任。</p></aside>

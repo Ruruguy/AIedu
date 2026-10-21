@@ -119,14 +119,31 @@
   const terms = [...document.querySelectorAll('[data-term]')];
   const filters = [...document.querySelectorAll('.filter-button')];
   let category = 'all';
+  let hadTermQuery = false;
   function filterTerms() {
     const query = (search?.value || '').trim().toLowerCase();
     terms.forEach(term => {
       const haystack = `${term.dataset.term} ${term.textContent}`.toLowerCase();
       const categories = (term.dataset.category || '').split(/\s+/);
       term.hidden = !(haystack.includes(query) && (category === 'all' || categories.includes(category)));
+      if (term.classList.contains('term-group')) {
+        if (query) term.open = !term.hidden;
+        else if (hadTermQuery) term.open = false;
+      }
     });
+    hadTermQuery = Boolean(query);
+    const status = document.getElementById('term-search-status');
+    if (status) status.textContent = query || category !== 'all' ? `找到 ${terms.filter(term => !term.hidden).length} 組相關說明；定義與關係都在下方。` : '展開想了解的一組；也可搜尋名詞，直接顯示相關說明。';
   }
+  function openTermAnchor() {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target?.classList.contains('term-group')) {
+      category = 'all'; if (search) search.value = '';
+      filters.forEach(button => button.classList.toggle('active', button.dataset.filter === 'all'));
+      filterTerms(); target.open = true; target.scrollIntoView({behavior:'instant',block:'start'});
+    }
+  }
+  filterTerms(); openTermAnchor(); window.addEventListener('hashchange', openTermAnchor);
   search?.addEventListener('input', filterTerms);
   filters.forEach(button => button.addEventListener('click', () => {
     category = button.dataset.filter;
